@@ -1,0 +1,13 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 5938.84it/s]
+Loading weights:   0%|          | 0/750 [00:00<?, ?it/s]Loading weights:   0%|          | 2/750 [00:00<01:06, 11.29it/s]Loading weights:   3%|▎         | 23/750 [00:00<00:07, 100.01it/s]Loading weights:   9%|▊         | 64/750 [00:00<00:03, 205.76it/s]Loading weights:  15%|█▍        | 112/750 [00:00<00:02, 298.72it/s]Loading weights:  20%|█▉        | 147/750 [00:00<00:01, 308.18it/s]Loading weights:  24%|██▍       | 181/750 [00:00<00:01, 316.03it/s]Loading weights:  29%|██▉       | 217/750 [00:00<00:01, 308.89it/s]Loading weights:  34%|███▍      | 258/750 [00:00<00:01, 335.39it/s]Loading weights:  39%|███▉      | 295/750 [00:01<00:01, 295.66it/s]Loading weights:  45%|████▌     | 338/750 [00:01<00:01, 304.36it/s]Loading weights:  53%|█████▎    | 397/750 [00:01<00:00, 376.29it/s]Loading weights:  98%|█████████▊| 732/750 [00:01<00:00, 1150.89it/s]Loading weights: 100%|██████████| 750/750 [00:01<00:00, 524.05it/s] 
+[grpo] 29896 prompts；可训参数 89.3M；N=4 lr=2e-06 steps=3
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[eval step 0] greedy均 -8.732 | light:-6.86 tone:-8.48 color:-14.68 detail:-4.91
+/home/chen/Work/adobe_lr/5_training/v2_grpo.py:246: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  step_kl.append(float(kl))
+  step    1 reward均 -11.102 |adv|均 0.864 KL均 0.002 grad_norm 52.54 rollouts 4 (7.4s/step)
+  step    2 reward均 -3.355 |adv|均 0.865 KL均 0.048 grad_norm 135.43 rollouts 4 (7.4s/step)
+  step    3 reward均 -14.774 |adv|均 0.871 KL均 0.005 grad_norm 82.87 rollouts 4 (6.6s/step)
+[grpo] done 0.3min → /home/chen/Work/adobe_lr/5_training/output/grpo_v1

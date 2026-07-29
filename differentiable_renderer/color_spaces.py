@@ -147,15 +147,26 @@ def delta_e_2000(lab1: torch.Tensor, lab2: torch.Tensor,
     C2 = torch.sqrt(a2 * a2 + b2 * b2 + eps)
     Cb = (C1 + C2) / 2.0
     Cb7 = Cb.pow(7)
-    G = 0.5 * (1.0 - torch.sqrt(Cb7 / (Cb7 + 25.0 ** 7)))
+    # +eps inside sqrt: at zero chroma (Cb7→0) the bare sqrt has an infinite
+    # derivative which, chained with Cb7's zero derivative, yields a NaN
+    # gradient (inf×0).  The eps floors the sqrt argument so the gradient stays
+    # finite on achromatic pixels; forward change is ~1e-12.
+    G = 0.5 * (1.0 - torch.sqrt(Cb7 / (Cb7 + 25.0 ** 7) + eps))
     a1p = (1.0 + G) * a1
     a2p = (1.0 + G) * a2
     C1p = torch.sqrt(a1p * a1p + b1 * b1 + eps)
     C2p = torch.sqrt(a2p * a2p + b2 * b2 + eps)
 
-    # Hue angles in radians, in [0, 2pi)
+    # Hue angles in radians, in [0, 2pi).
+    # torch.atan2(0, 0) has a NaN gradient, and pure-neutral pixels (R=G=B →
+    # a=b=0) land exactly on that point.  Their hue is masked out below via
+    # ``zero_chroma``, but torch.where still back-propagates the NaN through
+    # the *unselected* branch, poisoning every parameter's gradient — which
+    # silently collapses fits of achromatic / dark targets to identity.
+    # Nudging the real axis off zero keeps the gradient finite; the forward
+    # shift (<1e-7 in a*) is far below uint8 quantisation.
     def _atan2_pos(y, x):
-        h = torch.atan2(y, x)
+        h = torch.atan2(y, x + 1e-7)
         return torch.where(h < 0, h + 2.0 * math.pi, h)
 
     h1p = _atan2_pos(b1, a1p)
@@ -194,7 +205,7 @@ def delta_e_2000(lab1: torch.Tensor, lab2: torch.Tensor,
 
     dTheta = math.radians(30) * torch.exp(-((Hbp - math.radians(275)) / math.radians(25)).pow(2))
     Cbp7 = Cbp.pow(7)
-    Rc = 2.0 * torch.sqrt(Cbp7 / (Cbp7 + 25.0 ** 7))
+    Rc = 2.0 * torch.sqrt(Cbp7 / (Cbp7 + 25.0 ** 7) + eps)   # +eps: see G above
     Sl = 1.0 + (0.015 * (Lbp - 50.0).pow(2)) / torch.sqrt(20.0 + (Lbp - 50.0).pow(2) + eps)
     Sc = 1.0 + 0.045 * Cbp
     Sh = 1.0 + 0.015 * Cbp * T

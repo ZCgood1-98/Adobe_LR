@@ -1,0 +1,11 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 3372.98it/s]
+Loading weights:   0%|          | 0/750 [00:00<?, ?it/s]Loading weights:   0%|          | 2/750 [00:00<01:09, 10.71it/s]Loading weights:   4%|▍         | 32/750 [00:00<00:05, 135.43it/s]Loading weights:   8%|▊         | 62/750 [00:00<00:03, 184.95it/s]Loading weights:  13%|█▎        | 101/750 [00:00<00:02, 216.99it/s]Loading weights:  21%|██        | 159/750 [00:00<00:01, 316.21it/s]Loading weights:  26%|██▌       | 194/750 [00:00<00:01, 291.72it/s]Loading weights:  32%|███▏      | 237/750 [00:00<00:01, 309.52it/s]Loading weights:  37%|███▋      | 277/750 [00:01<00:01, 333.20it/s]Loading weights:  42%|████▏     | 312/750 [00:01<00:01, 334.50it/s]Loading weights:  46%|████▋     | 347/750 [00:01<00:01, 304.94it/s]Loading weights:  51%|█████     | 384/750 [00:01<00:01, 313.88it/s]Loading weights:  99%|█████████▉| 743/750 [00:01<00:00, 1186.34it/s]Loading weights: 100%|██████████| 750/750 [00:01<00:00, 503.43it/s] 
+[chain] 7474 链单元；可训 89.3M；N=8 lr=4e-06 steps=60 kl=0.05 vstar=True
+[eval step 0] 全链改善 中位 -0.081 均 -0.754 >0比例 38%
+  step    1 链改善中位 -0.202 组内std 3.93 KL均 0.027 grad_norm 64.90 更新 32 (93.7s/step)
+  step    5 链改善中位 -0.590 组内std 4.22 KL均 0.034 grad_norm 71.02 更新 32 (93.8s/step)
+  step   10 链改善中位 -0.344 组内std 3.68 KL均 0.038 grad_norm 68.64 更新 32 (96.4s/step)
+  step   15 链改善中位 -0.527 组内std 4.45 KL均 0.059 grad_norm 73.82 更新 32 (96.1s/step)
+  step   20 链改善中位 -0.109 组内std 2.82 KL均 0.065 grad_norm 76.04 更新 32 (96.5s/step)
+[eval step 20] 全链改善 中位 +0.132 均 -0.190 >0比例 58%

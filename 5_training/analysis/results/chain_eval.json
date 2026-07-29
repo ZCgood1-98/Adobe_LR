@@ -1,0 +1,209 @@
+{
+ "sft_v2": {
+  "tag": "sft_v2",
+  "adapter": "5_training/output/sft_v2",
+  "n": 147,
+  "improve_p50": -0.0009,
+  "improve_mean": -0.3132,
+  "frac_pos": 0.4966,
+  "frac_disaster": 0.0544,
+  "improve_p10": -0.5899,
+  "improve_p90": 0.4048,
+  "bw_p50": 0.2258,
+  "stage_gain_p50": {
+   "light": 0.353,
+   "tone": -0.048,
+   "color": -0.005,
+   "detail": 0.027
+  },
+  "param_p50": {
+   "晕影": -31.0,
+   "饱和度": 10.9,
+   "自然饱和度": 10.9,
+   "曝光度": -0.02,
+   "清晰度": 0.0,
+   "对比度": 0.0
+  },
+  "param_extreme": {
+   "晕影": 0.102,
+   "饱和度": 0.129,
+   "自然饱和度": 0.129,
+   "曝光度": 0.0,
+   "清晰度": 0.197,
+   "对比度": 0.0
+  }
+ },
+ "run2_perstage": {
+  "tag": "run2_perstage",
+  "adapter": "5_training/output/grpo_explore2",
+  "n": 147,
+  "improve_p50": 0.0467,
+  "improve_mean": -0.1518,
+  "frac_pos": 0.5578,
+  "frac_disaster": 0.0544,
+  "improve_p10": -0.5391,
+  "improve_p90": 0.3933,
+  "bw_p50": 0.2623,
+  "stage_gain_p50": {
+   "light": 0.244,
+   "tone": -0.0,
+   "color": -0.002,
+   "detail": 0.085
+  },
+  "param_p50": {
+   "晕影": -27.7,
+   "饱和度": 10.9,
+   "自然饱和度": 10.9,
+   "曝光度": -0.02,
+   "清晰度": 0.0,
+   "对比度": -0.9
+  },
+  "param_extreme": {
+   "晕影": 0.0,
+   "饱和度": 0.129,
+   "自然饱和度": 0.129,
+   "曝光度": 0.0,
+   "清晰度": 0.129,
+   "对比度": 0.0
+  }
+ },
+ "chain1_s50": {
+  "tag": "chain1_s50",
+  "adapter": "5_training/output/grpo_chain1/step_50",
+  "n": 147,
+  "improve_p50": 0.1081,
+  "improve_mean": -0.2719,
+  "frac_pos": 0.5714,
+  "frac_disaster": 0.068,
+  "improve_p10": -0.6632,
+  "improve_p90": 0.4155,
+  "bw_p50": 0.1794,
+  "stage_gain_p50": {
+   "light": 0.353,
+   "tone": 0.027,
+   "color": 0.03,
+   "detail": 0.059
+  },
+  "param_p50": {
+   "晕影": -31.0,
+   "饱和度": 9.3,
+   "自然饱和度": 0.0,
+   "曝光度": -0.02,
+   "清晰度": 0.0,
+   "对比度": 0.0
+  },
+  "param_extreme": {
+   "晕影": 0.116,
+   "饱和度": 0.129,
+   "自然饱和度": 0.129,
+   "曝光度": 0.0,
+   "清晰度": 0.184,
+   "对比度": 0.0
+  }
+ },
+ "chain1_final": {
+  "tag": "chain1_final",
+  "adapter": "5_training/output/grpo_chain1",
+  "n": 147,
+  "improve_p50": 0.0826,
+  "improve_mean": -0.339,
+  "frac_pos": 0.5782,
+  "frac_disaster": 0.0884,
+  "improve_p10": -0.8796,
+  "improve_p90": 0.4169,
+  "bw_p50": 0.2573,
+  "stage_gain_p50": {
+   "light": 0.405,
+   "tone": 0.056,
+   "color": 0.062,
+   "detail": -0.072
+  },
+  "param_p50": {
+   "晕影": -42.6,
+   "饱和度": 0.0,
+   "自然饱和度": 0.0,
+   "曝光度": -0.02,
+   "清晰度": 0.0,
+   "对比度": -0.9
+  },
+  "param_extreme": {
+   "晕影": 0.129,
+   "饱和度": 0.129,
+   "自然饱和度": 0.129,
+   "曝光度": 0.0,
+   "清晰度": 0.184,
+   "对比度": 0.0
+  }
+ },
+ "chain2_rtg": {
+  "tag": "chain2_rtg",
+  "adapter": "5_training/output/grpo_chain2",
+  "n": 147,
+  "improve_p50": 0.0903,
+  "improve_mean": -0.1936,
+  "frac_pos": 0.6395,
+  "frac_disaster": 0.0544,
+  "improve_p10": -0.6965,
+  "improve_p90": 0.4302,
+  "bw_p50": 0.2706,
+  "stage_gain_p50": {
+   "light": 0.37,
+   "tone": 0.086,
+   "color": 0.018,
+   "detail": 0.025
+  },
+  "param_p50": {
+   "晕影": -42.6,
+   "饱和度": 7.9,
+   "自然饱和度": 0.0,
+   "曝光度": -0.02,
+   "清晰度": 0.0,
+   "对比度": 0.0
+  },
+  "param_extreme": {
+   "晕影": 0.088,
+   "饱和度": 0.129,
+   "自然饱和度": 0.129,
+   "曝光度": 0.0,
+   "清晰度": 0.197,
+   "对比度": 0.0
+  }
+ },
+ "chain3_vstar_s20": {
+  "tag": "chain3_vstar_s20",
+  "adapter": "5_training/output/grpo_chain3/step_20",
+  "n": 147,
+  "improve_p50": 0.0458,
+  "improve_mean": -0.2077,
+  "frac_pos": 0.5306,
+  "frac_disaster": 0.0612,
+  "improve_p10": -0.7718,
+  "improve_p90": 0.4446,
+  "bw_p50": 0.2254,
+  "stage_gain_p50": {
+   "light": 0.353,
+   "tone": 0.105,
+   "color": -0.047,
+   "detail": 0.017
+  },
+  "vstar_improve_p50": 0.215,
+  "vstar_frac_pos": 0.6463,
+  "vstar_frac_disaster": 0.0748,
+  "param_p50": {
+   "晕影": -42.6,
+   "饱和度": 9.3,
+   "自然饱和度": 7.9,
+   "曝光度": -0.02,
+   "清晰度": 0.0,
+   "对比度": 0.0
+  },
+  "param_extreme": {
+   "晕影": 0.068,
+   "饱和度": 0.129,
+   "自然饱和度": 0.129,
+   "曝光度": 0.0,
+   "清晰度": 0.211,
+   "对比度": 0.0
+  }
+ }
+}

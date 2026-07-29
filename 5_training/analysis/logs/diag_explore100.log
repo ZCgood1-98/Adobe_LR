@@ -1,0 +1,62 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[gen] 加载 Qwen/Qwen3-VL-8B-Instruct + LoRA 5_training/output/grpo_explore/step_100
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 3379.78it/s]
+Loading weights:   0%|          | 0/750 [00:00<?, ?it/s]Loading weights:   0%|          | 2/750 [00:00<01:04, 11.59it/s]Loading weights:   4%|▍         | 30/750 [00:00<00:06, 105.89it/s]Loading weights:  10%|█         | 76/750 [00:00<00:03, 192.97it/s]Loading weights:  19%|█▉        | 144/750 [00:00<00:01, 332.47it/s]Loading weights:  24%|██▍       | 183/750 [00:00<00:01, 330.61it/s]Loading weights:  29%|██▉       | 220/750 [00:00<00:01, 278.90it/s]Loading weights:  36%|███▋      | 273/750 [00:00<00:01, 340.21it/s]Loading weights:  42%|████▏     | 312/750 [00:01<00:01, 353.14it/s]Loading weights:  47%|████▋     | 351/750 [00:01<00:01, 361.84it/s]Loading weights:  52%|█████▏    | 390/750 [00:01<00:01, 343.09it/s]Loading weights:  98%|█████████▊| 737/750 [00:01<00:00, 1172.88it/s]Loading weights: 100%|██████████| 750/750 [00:01<00:00, 527.52it/s] 
+  [20/588] 0.60 it/s  eta 16 min
+  [40/588] 0.61 it/s  eta 15 min
+  [60/588] 0.61 it/s  eta 14 min
+  [80/588] 0.61 it/s  eta 14 min
+  [100/588] 0.61 it/s  eta 13 min
+  [120/588] 0.61 it/s  eta 13 min
+  [140/588] 0.61 it/s  eta 12 min
+  [160/588] 0.61 it/s  eta 12 min
+  [180/588] 0.61 it/s  eta 11 min
+  [200/588] 0.61 it/s  eta 11 min
+  [220/588] 0.61 it/s  eta 10 min
+  [240/588] 0.61 it/s  eta 9 min
+  [260/588] 0.61 it/s  eta 9 min
+  [280/588] 0.61 it/s  eta 8 min
+  [300/588] 0.61 it/s  eta 8 min
+  [320/588] 0.61 it/s  eta 7 min
+  [340/588] 0.61 it/s  eta 7 min
+  [360/588] 0.61 it/s  eta 6 min
+  [380/588] 0.61 it/s  eta 6 min
+  [400/588] 0.61 it/s  eta 5 min
+  [420/588] 0.61 it/s  eta 5 min
+  [440/588] 0.61 it/s  eta 4 min
+  [460/588] 0.61 it/s  eta 3 min
+  [480/588] 0.61 it/s  eta 3 min
+  [500/588] 0.61 it/s  eta 2 min
+  [520/588] 0.61 it/s  eta 2 min
+  [540/588] 0.61 it/s  eta 1 min
+  [560/588] 0.61 it/s  eta 1 min
+  [580/588] 0.61 it/s  eta 0 min
+[gen] 新增 588 条 → sft_data_v2/diag_explore100/predictions.jsonl
+[score] 588 条预测
+  [50/588] 3.1 it/s  eta 3 min
+  [100/588] 3.1 it/s  eta 3 min
+  [150/588] 3.4 it/s  eta 2 min
+  [200/588] 3.4 it/s  eta 2 min
+  [250/588] 3.4 it/s  eta 2 min
+  [300/588] 3.3 it/s  eta 1 min
+  [350/588] 3.3 it/s  eta 1 min
+  [400/588] 3.3 it/s  eta 1 min
+  [450/588] 3.3 it/s  eta 1 min
+  [500/588] 3.3 it/s  eta 0 min
+  [550/588] 3.3 it/s  eta 0 min
+  [588/588] 3.3 it/s  eta 0 min
+
+===== 分 stage 图像空间诊断 =====
+stage       n   解析失败   键异常 L_pred p50 L_noop p50    改善中位   改善p10
+light     147      0     0      2.536       2.31  -0.063  -2.136
+         参数MAE: {'exposure': 0.46, 'temperature': 474.46, 'tint': 5.53}
+tone      147      0     0      2.387      2.421   0.081   -0.81
+         参数MAE: {'blacks': 6.16, 'contrast': 3.29, 'dehaze': 5.28, 'highlights': 15.13, 'shadows': 10.2, 'tone_curve': 4.36, 'whites': 1.91}
+color     147      0     0      4.765      5.465   0.094   -0.56
+         参数MAE: {'color_grading': 3.42, 'color_mixer': 10.08, 'saturation': 8.04, 'vibrance': 6.78}
+detail    147      0     0      1.236      0.999  -0.104  -5.526
+         参数MAE: {'clarity': 18.32, 'noise_reduction': 0.58, 'sharpen': 3.33, 'texture': 14.62, 'vignette': 25.3}
+黑白子集  n=76  改善中位=0.414
+
+[score] 明细 scores.jsonl / 汇总 report.json → sft_data_v2/diag_explore100/
+读法：改善中位 = 1 − L_pred/L_noop，越接近 1 该 stage 学得越好；≈0 表示不比全零好；哪个 stage 显著落后再考虑拆分它。

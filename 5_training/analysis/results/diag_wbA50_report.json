@@ -1,0 +1,69 @@
+{
+ "light": {
+  "n": 50,
+  "parse_fail": 0,
+  "flagged": 0,
+  "L_pred_p50": 2.114,
+  "L_noop_p50": 2.145,
+  "improve_p50": -0.187,
+  "improve_p10": -1.571,
+  "param_mae": {
+   "exposure": 0.41,
+   "temperature": 444.2,
+   "tint": 6.52
+  }
+ },
+ "tone": {
+  "n": 50,
+  "parse_fail": 0,
+  "flagged": 0,
+  "L_pred_p50": 2.038,
+  "L_noop_p50": 2.353,
+  "improve_p50": -0.039,
+  "improve_p10": -0.824,
+  "param_mae": {
+   "blacks": 5.96,
+   "contrast": 3.74,
+   "dehaze": 5.57,
+   "highlights": 9.89,
+   "shadows": 10.66,
+   "tone_curve": 3.91,
+   "whites": 1.82
+  }
+ },
+ "color": {
+  "n": 50,
+  "parse_fail": 0,
+  "flagged": 0,
+  "L_pred_p50": 4.587,
+  "L_noop_p50": 5.44,
+  "improve_p50": 0.039,
+  "improve_p10": -0.774,
+  "param_mae": {
+   "color_grading": 3.22,
+   "color_mixer": 9.55,
+   "saturation": 8.86,
+   "vibrance": 7.78
+  }
+ },
+ "detail": {
+  "n": 50,
+  "parse_fail": 0,
+  "flagged": 0,
+  "L_pred_p50": 1.583,
+  "L_noop_p50": 0.85,
+  "improve_p50": -0.277,
+  "improve_p10": -8.228,
+  "param_mae": {
+   "clarity": 26.43,
+   "noise_reduction": 0.09,
+   "sharpen": 4.76,
+   "texture": 22.6,
+   "vignette": 29.68
+  }
+ },
+ "bw_subset": {
+  "n": 40,
+  "improve_p50": 0.43
+ }
+}

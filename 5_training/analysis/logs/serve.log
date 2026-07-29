@@ -1,0 +1,8 @@
+写出 /home/chen/Work/adobe_lr/sft_data_v2/diag_d1_review.html  (4.9 MB, 42 组, 通过 38/42)
+
+════════════════════════════════════════════════════════════════
+  复审页已上线 →  http://localhost:8757/diag_d1_review.html
+  · VS Code Remote-SSH:终端里 Ctrl/Cmd + 点上面链接即可(端口自动转发)
+  · 纯 SSH:本地先跑  ssh -L 8757:localhost:8757 <user>@<server>  再点链接
+  · Ctrl-C 停止服务
+════════════════════════════════════════════════════════════════

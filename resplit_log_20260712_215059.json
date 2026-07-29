@@ -1,0 +1,2815 @@
+{
+  "time": "20260712_215059",
+  "seed": 42,
+  "test_target": 500,
+  "match": "all",
+  "ref_weights": {
+    "人物": 804,
+    "植物": 390,
+    "食物": 259,
+    "其他": 446,
+    "都市": 335,
+    "动物": 267,
+    "风景": 584
+  },
+  "fit_root": "/home/chen/Work/adobe_lr/fit_results",
+  "src_root": "/home/chen/Work/adobe_lr/try_new_dataset1",
+  "pool_counts": {
+    "风景": 168,
+    "人物": 225,
+    "其他": 142,
+    "食物": 78,
+    "动物": 101,
+    "都市": 88,
+    "植物": 132
+  },
+  "targets": {
+    "人物": 131,
+    "植物": 63,
+    "食物": 42,
+    "其他": 72,
+    "都市": 54,
+    "动物": 43,
+    "风景": 95
+  },
+  "stay": {
+    "人物": [
+      "0035f996-18a2-4ade-89ab-f72b375bb74c",
+      "0a2c570c-ca7c-4f45-86aa-76ea16dfa8b0",
+      "0bacf4f4-8c9f-4170-96f8-154ad8910cda",
+      "0de85930-a1b6-42bd-a6f7-95548a286797",
+      "0ec07dde-3698-4d8f-af66-19ec3cdf8989",
+      "11f828c5-0e37-4d75-b861-3dc4b6975096",
+      "13136ef0-dafa-47d4-aab1-b813f530d5b9",
+      "136033ef-d168-4347-b624-e57525c4d235",
+      "151100c6-8b22-4d78-a06b-fc2f9a1ea90f",
+      "19c4c9bd-9a0f-4e85-b280-0f6f6ca2d11e",
+      "1d31deb5-ca15-47b6-86a8-1dc322e20026",
+      "1d5b1886-2947-4c77-a2dd-24c90d3f6868",
+      "20659262-9c66-48b9-ad40-054099c7022b",
+      "22fd9291-e85f-4bea-bce0-910dd6f605f4",
+      "248455a6-fd84-4b34-88db-f50e3cbe402f",
+      "2568e038-fe78-4080-a9c3-7aa02f53dbdd",
+      "293bc91b-a69b-4928-9ee1-9f6cf6647d1e",
+      "2c325364-5535-46ff-b0a4-5ca84f9f7109",
+      "2c95cfa9-5364-48c8-9db7-2d4dbef193c0",
+      "2d5c3995-fe6e-414e-a09c-8a415c2f12a6",
+      "31546a37-c18b-4295-9710-4dcc02ce3a13",
+      "31fd31f7-b4c9-4530-92cf-8780c9e996ad",
+      "37530bd6-ae04-4602-89a5-fe11615114ee",
+      "394daee1-54d8-4cf6-bfc0-618ef9ab4274",
+      "3c738fac-4546-44aa-b25c-01b957ca78a1",
+      "3cdc136a-a9ae-47d3-aaad-e4133fcb5ea9",
+      "3d06b9d5-b951-4b99-99ff-61edbba75494",
+      "3d97f9e7-be00-446e-aa61-5cf1c50ca2f1",
+      "4010692c-63bf-4307-b7ea-1c481f7dbf88",
+      "401e6602-3b7f-4c8c-a37e-377fcf7e2376",
+      "4218c9ac-de69-44c4-9b7e-851fd660886f",
+      "4233ec0f-c727-465d-99b9-6d2c39521427",
+      "427af982-4c29-4721-a85d-d339351b1e21",
+      "438c85fb-b920-4c7d-93b8-5bbd71409f1e",
+      "43b64bf2-4221-46b1-9e10-6df6ebecbf0b",
+      "46058014-47ae-48cb-a882-238074d031e6",
+      "46feeacf-4462-4bea-ab21-14700a3e6b1e",
+      "489951f1-a331-49f2-b4d0-5b1d229ef0e8",
+      "4c297087-b480-4b30-98d1-90f34d6be668",
+      "4c2d7e34-3e0c-4132-9aa6-1541fefe1d70",
+      "4ce8df24-8a7b-4abb-9a42-40f895b638ce",
+      "507ebd3d-19f4-490f-b61d-e63b7eb51bd2",
+      "50b703a1-5be6-4648-b152-f1a01f8f89b6",
+      "51736eca-dd12-4baf-bf84-ad3f035968a8",
+      "550aa2da-f5fd-4df5-b2f2-c4439d8dbf6f",
+      "5685f89b-4d77-4b22-912b-e807e27b8ba1",
+      "5d2a7235-0ad8-4ddc-a034-69654f68617e",
+      "5dfd82a5-b041-4872-9251-919c10c052ed",
+      "5e356dbc-0cc8-468b-849b-e8ffe88fc0cb",
+      "6407ad6f-4127-464e-81b1-58e60d8ce48f",
+      "66b96a86-5542-4af4-8aca-22a576737b36",
+      "67fa3fe1-1fc7-4ac8-a538-6497c995260a",
+      "71bc2b07-1240-4852-9506-505de362ec39",
+      "7298b30d-f7dd-4701-93f6-08396e3e6cda",
+      "74e12165-b7b6-416a-8607-897ef2add5d9",
+      "756f2da6-4df0-4eb4-8c51-80e468995189",
+      "758ed3b8-8fbd-4614-9139-a291f437e6c6",
+      "7674771f-2c2c-41f9-be31-5715cc75a213",
+      "77057d47-95ec-42b1-813b-efffe6aae4f1",
+      "77afb388-dfef-43a4-b38b-3beb1947e34a",
+      "7a5229df-6507-4c90-b9a4-a355c8cc0830",
+      "7b516430-0118-4213-a247-79519cf0c9d2",
+      "803ea0df-8417-48f6-92f1-10573ce88304",
+      "81a64b98-1880-42f4-8be5-24314436a243",
+      "85aab3e5-393f-451f-9549-1b14ec7050da",
+      "863676b4-23c6-4d85-8628-19c5417c6453",
+      "8711db42-1de9-48d9-b781-5daaf71743b7",
+      "88557e3f-bbd3-402f-9b45-eebcb4a77917",
+      "89f3b95b-981a-43ab-982a-d5410d44bc31",
+      "8b805f3c-483c-4dd6-ad69-5bb17c4a5ecc",
+      "8bcc0822-f6af-44e0-93ca-1955ce6d3fe0",
+      "8c0c1c98-ebf8-4cbb-a1f7-a424dc55b601",
+      "8dc031da-6d74-419d-951a-9b8265dce313",
+      "91658ea8-608f-44c0-be28-94ceddd340ae",
+      "924ed0b9-5f00-496c-90e3-46f77422464f",
+      "930e724b-f491-40a5-9ae3-541b402c2127",
+      "97ac62a1-3b71-4f1b-a653-5bfe7623b394",
+      "9b7572c1-0922-4ed1-9bb5-e93db10a5179",
+      "9c04acd6-61db-4d68-830a-a6c309fe0733",
+      "9c2ca307-e964-4f15-a93b-adc79387e9eb",
+      "9cbd1ef8-8da5-45d2-95c8-09b1504fb6eb",
+      "a01bf2a1-c242-4e49-814d-194423545246",
+      "a1806775-d3ec-453a-bc1f-7a4a429c239d",
+      "a8d027c7-393f-42f8-87a6-1c58908566f2",
+      "ac9201fd-c2bf-4ea2-ba48-a78ba6c7f342",
+      "acb4f96e-46a1-4b41-9b5f-8888cb1560b2",
+      "ae12703c-b3a5-4514-8f75-ffd1e7359ad3",
+      "aec69bc7-51c1-426d-a1f4-a6688fd3e19f",
+      "af145ab4-7e64-41e4-9dec-9b3b1605df3e",
+      "b0592798-ddeb-4196-bc67-813499eb2559",
+      "b2d976ab-e172-4fe8-aedd-9f28a076f113",
+      "b4fc7228-a86e-41e1-880e-8119e419ad39",
+      "b6c3e53a-4b8c-40d2-bfcd-bfb1eb5d71ee",
+      "b7aef37c-bc5a-4351-b767-86bcf6eed943",
+      "b7ec2153-d1a6-4d4f-a977-23af7776506e",
+      "bdeaa079-836e-4d63-81c1-6c91138baec8",
+      "c0a55697-f86b-43c9-8ce4-3bbcf9ebcacd",
+      "c0cd2c13-7e4a-4162-99b4-3a1c2e9827fb",
+      "c121cf46-4d4b-4128-8bb6-29a2a5c192e2",
+      "c2903fd4-7ccf-4304-a748-0909bc786e98",
+      "c2af5c4d-125a-4629-811d-df8686ccd689",
+      "c3b31409-3994-43b8-b700-640e2ec0e208",
+      "c5c3dcb3-c83a-47c9-bffa-0f362cd767c6",
+      "c64ae526-0ada-465f-a8a1-73474889b7dc",
+      "c658fbe0-380c-410e-8121-a2703693ada2",
+      "c7be085c-a97f-47d9-835c-5c64ae2f56f1",
+      "c8ed509c-5ca0-457a-8c92-2515f050b3fc",
+      "cc4ab022-49b4-4e30-b648-1edb009ae309",
+      "ccc3a571-2e6c-4eef-9bc0-7513fb026601",
+      "cf72338c-5920-4837-8963-8c08385e7f00",
+      "cfb695c4-d753-4949-8c3b-048816adb347",
+      "d01237a0-b0a3-4222-8b63-86a6ed50e848",
+      "d0c520eb-bf3b-4410-901b-713455b11265",
+      "d6d3cb23-4be9-4740-89e3-abb441a20f12",
+      "e3b1557c-99cc-45ad-ab77-1094f2a06115",
+      "e4c8c70d-3a23-48d3-a8fd-2035d64d01ff",
+      "e7eb990a-8066-40af-945c-bed549d73b61",
+      "eb8f6fd3-c540-41a0-9531-cfa6f126fa14",
+      "ebfe25b5-a5c0-4c99-a30b-f550ef5c5aab",
+      "ec11fe80-978a-4a41-b334-90f669b61a13",
+      "eec16636-8624-419d-82c1-f3f4917cc8ee",
+      "efed91c7-4d0a-4a4d-9c27-f23ff7fc68fc",
+      "f02c04dd-fa6e-4b87-8efe-634b0cb3e3f7",
+      "f2481ad9-969f-4733-adb1-23159aa64628",
+      "f68e026c-799b-4a8c-8d97-0e71d5ad419a",
+      "f715fac6-b4ac-4d53-a3d9-6e57a5670e95",
+      "f8e2d6bb-4b57-4c95-98d3-8b6a4f3ca95e",
+      "fafe1631-5334-41f7-bd6b-6514ab159857",
+      "fb18795b-588e-47d4-8643-ba35d4d4904f",
+      "fd2fafb2-2732-43f5-8235-6a4ebb96f3ab",
+      "fe805a70-154b-4420-b043-42f44571506b"
+    ],
+    "其他": [
+      "00d8d6de-733d-4a30-a2de-0fc06fe27c44",
+      "040f00c1-ff8c-4089-9088-90f810dfe959",
+      "0f2a388e-2c39-45b1-bb10-8908ce1a4a6f",
+      "12e5a87b-0174-4849-8997-6a1574bc4947",
+      "1911d2c2-c20a-4e7c-acef-49c121260dd2",
+      "1c087bd0-4c9b-4829-abab-121f41636cbc",
+      "1c553d63-a7d9-44ad-af07-a83da311946e",
+      "2103ec63-7a99-49dd-b311-088e2f321fc6",
+      "223f8a7e-cd1f-497f-8909-eeea637b83a9",
+      "2488dc59-1a3d-404c-b2a4-f2bc81d90ecf",
+      "25ef2cd0-cee9-4174-a883-75c23f8cd622",
+      "278cb6dd-ac38-4705-b594-0f45d5e70ada",
+      "286be14e-14f6-4c92-bce7-030f5480ac2b",
+      "2cd4a315-14be-4c2b-aa3b-4529329a1ceb",
+      "2fadb636-90d3-44d1-81e4-7cdf1534f2ef",
+      "2fc53052-f2ab-43cc-9338-bef6905b9a0b",
+      "3036ff28-73e3-4393-bfc6-be29f1d2d24b",
+      "32c818d7-160c-457b-be68-a4a95c4e4daf",
+      "3bb03a89-9ca0-4296-9ea3-c39a6499318d",
+      "43c57900-4bbc-4fd7-8101-a265a7d8e342",
+      "44aedba2-957c-4cdf-ab37-6c5498d982a2",
+      "46c479dc-f3ad-4ab3-8cc1-28beb164d377",
+      "46f6a901-1a3f-4dd5-9da3-600a00d6e706",
+      "4a906e94-d477-4fb5-82d5-8435471541ff",
+      "5462a76f-818d-4d5d-ab22-63432fc395ed",
+      "5699a9b1-a0af-4232-a98e-bac7ec46314f",
+      "64d66e7f-5b63-4520-806b-64ca07c453e6",
+      "6548f6f5-016e-4add-bdc6-480863adc9d8",
+      "68d76982-3c72-4f04-bb5a-6bcae32b2448",
+      "703b59c3-8b81-4c76-af7b-e98062c4d270",
+      "74ebed37-a176-4a41-84d4-3484052c32b9",
+      "79b866ba-a3c0-470e-84a1-44a8677d4610",
+      "813ee1a0-7a71-4a50-b3b9-0c0d6614ab25",
+      "824fc169-127f-4d27-9d88-61b1c916484a",
+      "8303db54-a2c4-4162-bb5f-e66a3db92073",
+      "87a6bb2f-5a0d-4ec4-873d-0cc373ed80d5",
+      "8a47b293-15d0-4285-a6ba-28ebc9db676b",
+      "8e4489eb-616e-403d-b466-b66c894b0d5b",
+      "8e5c9a9f-5247-4cdb-85f2-87fbc2401966",
+      "95fc3ff8-a57f-4b3e-a220-7096bdc3c8f4",
+      "96727b3c-3df5-4385-a880-d42e243acb41",
+      "9c837841-483b-4f5b-ae58-158d2f174f0d",
+      "9ffdc470-069d-40c5-a6c0-5359d090c547",
+      "a2efd873-b99a-433d-b44a-ed3002bf0245",
+      "a60bb73d-102d-4ea7-880e-9d213f6758d1",
+      "aa63897b-11e4-4112-b61a-3bfa042cbcd8",
+      "aded1eee-1dce-4c27-a51f-bd0656e076e5",
+      "afe2697b-1fb0-4330-aa74-684c732734f1",
+      "b12a2e20-4e4d-41d5-ac74-1c6a17e4e0b0",
+      "b3b388ac-1e25-4f1c-99db-5353990b2a31",
+      "bd9f0d0e-d811-4787-a4f5-e3b5b3cf522e",
+      "c8ed199f-b6c7-4aed-9114-edf74adcfaac",
+      "c959c921-7f38-47de-b88c-7f629feff8e3",
+      "ce94945c-11a2-4508-90fe-ab823dfb7888",
+      "ce953e18-2f5a-41a8-b121-b86b5bffea15",
+      "d14c3f29-6a52-443c-9aaf-71718cf87ed7",
+      "d448283b-a8be-4b0a-938b-20699b28b965",
+      "d8577ec5-cd0a-46ac-ba92-bfa53fd00309",
+      "d990123b-619c-4dc7-93e0-b63a9eeaef6d",
+      "da47a076-6f01-4fc0-aee6-10e10854331a",
+      "dcd653a3-95fd-4cfc-829a-794b68a96066",
+      "de92f16d-02a2-4054-85d6-7fcc50693a85",
+      "e0780942-db64-43d0-b587-cf47861eae83",
+      "e275e512-8b7c-4e4d-b570-92ddbde9ddc3",
+      "ec321dd7-d5f4-4bff-bd66-4cbadcf09cc9",
+      "ee9e50fd-569a-4638-9fe7-5c385bb922c2",
+      "ef3ef947-8a2c-4bb7-be02-dc9b09606d59",
+      "f1ec5c03-84e1-4877-8015-1173bad737f8",
+      "f20eb943-ae10-4ada-81ff-09761860b207",
+      "f36ade6d-c17c-4f5a-9141-f748fe23c609",
+      "f9731198-1417-44f3-aa40-45e99c438376",
+      "f9bbd2ae-d739-4e99-bb07-0f24137ea491"
+    ],
+    "动物": [
+      "015e9b73-ea13-4bc7-b8b0-1fd489f126fb",
+      "0569b1cd-7a1e-4212-97b4-e92e01cfefdb",
+      "0ac9bb7b-1593-4649-93d8-27ee9de0f7c3",
+      "118e9f06-ea17-4b7b-9454-cc35099c1bc2",
+      "129a9533-2f73-42c4-958a-04321fe561a2",
+      "172b806a-a60f-4397-84ce-2b38331a7a87",
+      "1d8bea95-6f4e-4d9a-b9e0-edc9166a95aa",
+      "232e56f4-5a47-4997-a9a2-ad765e75225b",
+      "24799606-a6e2-4d67-ab90-690ef1d9cd66",
+      "27514f00-b81d-418c-8db0-8c874b24f6f5",
+      "4f0128d7-78e8-4aee-b4c0-e693ac0363e8",
+      "501314f0-dca7-4f2d-b201-b951558c3fc3",
+      "52755b7a-2ab4-45db-a537-10d911e2665e",
+      "53b1feca-38e2-4daa-b742-ed2ed6ba9de4",
+      "54293f09-4ec1-4c2b-887f-bd804333d041",
+      "5aec153c-3a38-4d52-aa98-b7fa32785292",
+      "69d6f06b-81f8-43ed-be1c-f17d1d510048",
+      "74fc3d61-91f2-4f9d-a374-2054a4939dbd",
+      "770aafed-b1c8-4e36-a2be-52e16cb601c2",
+      "83989410-8f25-40f6-bc5d-49170a82f1ca",
+      "8cdf446e-39e1-4e9b-8e9f-a9d8c5130ad4",
+      "8f003631-045b-48d6-b8e0-00be65c7a54a",
+      "9755ed24-6131-4863-9ad5-64adb06e163b",
+      "97fa3c92-d600-4fd3-a5de-c86632e5ba78",
+      "a0775765-78ea-42a2-9e4c-1a214b82cb22",
+      "a21e3643-fd12-4ad6-9900-b82a6f493a42",
+      "a36bc351-a5d9-4e80-bda0-bdb291e7f393",
+      "b13d3cdb-110c-4712-9f61-2ebc90abd75c",
+      "b1a7af6e-2853-4862-887d-014df8e5f379",
+      "bd9c574f-8657-4d79-9cd2-f3e9c2c24024",
+      "c16fa2fc-5c23-461e-90c6-68046af77ed7",
+      "ca12b42c-9006-4e27-a004-0261f8c9f043",
+      "ced5150a-03a7-410d-9b95-2ce9af6a91e7",
+      "d73baf41-6990-492b-b4d9-0db495ba7848",
+      "de12cad8-072f-4b5e-8a56-273f46f13a90",
+      "e06cc79e-0be6-4cf5-b38a-afa06e116ca4",
+      "e479b691-fe1d-4687-af06-bf4777649fcd",
+      "e69e5162-6ede-48e4-a0f3-b5d0ac4dae80",
+      "e7565967-845d-4fbd-9224-2f150d9f153e",
+      "e94fc64a-4716-4cc6-896b-46b78e5ea14c",
+      "eafdabf3-50fd-48e6-9946-fddc1f8c7e0d",
+      "f2d315a3-a6f5-4bb7-935a-0f92244a2b20",
+      "f331c997-27e2-4e26-b5cc-3c074812b715"
+    ],
+    "植物": [
+      "06bce49f-d59c-4700-ae4f-b555efe4bd98",
+      "0901f73e-51b1-4925-a80b-7d4d713f8f22",
+      "0f79718c-03b7-4960-9dac-0654362859f4",
+      "10a20258-3f82-43bb-ad7f-176c4e103d0e",
+      "124dc570-2b43-4991-8df0-9ad3bc4e5e9c",
+      "16e2eb73-02d1-4f96-9199-97b188d7326a",
+      "17f87dea-2b82-406b-95ec-89f2e9d02fe1",
+      "18dd35e3-aca0-4c82-94e9-5c1a6755c52a",
+      "21303c9f-ad3f-47a4-90dc-575056d5487a",
+      "26730f67-2065-412f-b9d4-fac05ee9a6ef",
+      "2ab43e83-11bd-4fc3-af54-b48597a62670",
+      "2c3571b0-7c18-44aa-b32f-eff24018570e",
+      "2cb0a1da-da25-418e-a57a-0cb9b1253339",
+      "31cb0140-fb8d-4831-8627-10f0be14e03a",
+      "35cf78bc-a8d2-48ff-83a2-47c2a4778fd0",
+      "3647ee3b-01a7-4de0-8f0a-30a12f57f804",
+      "372e22d4-2d27-4aa5-9182-31db8b3743ff",
+      "3b821bf5-d6d6-4922-a8e4-b7029b242426",
+      "3d61a169-d451-4f68-b31b-d5a7c9059c43",
+      "40b374ca-2edb-4ea0-8789-31cea392e89f",
+      "4894fb87-f62f-4606-8c32-7b393dd8e7e1",
+      "4fa04e81-a783-43b4-8691-285bad2cf618",
+      "5618480f-1341-42ed-9a9a-5814f2f50d83",
+      "5b57f3f3-4377-4b7a-83f5-270b6fe1aff6",
+      "5fee4669-4cf8-4bde-bbcb-524373c8792b",
+      "66b7f000-7c61-41fd-bdfa-b1ba6c08b49e",
+      "6d26b0af-4b46-4643-be9c-d37b83213387",
+      "71216d66-3f78-4338-bd21-d761f7ab1dc4",
+      "7328ff92-5fe1-40f1-964f-442ee65ef6d1",
+      "73adcce7-f3b7-4001-83b7-096e5d6e5bf3",
+      "74c0da70-87ca-4c70-9a82-878acaafd6d3",
+      "775c8997-0798-4f78-a094-9a5c17de7980",
+      "78e8a5c6-2449-4576-89e1-f212cf01bba7",
+      "7e86e51d-dabb-4961-a05b-aa3afacf1496",
+      "7faadfe7-d76a-4e34-8f46-c50fd7abad05",
+      "8653a5e0-403c-433f-9567-b4ae4f4e2b4d",
+      "86715773-3f87-4a22-bbb3-3f3ed6b537d6",
+      "93c9ab7f-0591-42e3-b137-09d6b97bd254",
+      "98330723-7156-44e6-88a2-96803f320e86",
+      "99830c52-89c0-4429-be64-bff71f3198dc",
+      "9b8378b5-d826-4e20-ab7f-fa527db1ede2",
+      "a3cbd3de-9a97-4504-b95a-3968ac3e868f",
+      "a694b352-2bc3-4311-95ad-d2bf5793615b",
+      "abcf19bb-9101-40db-8172-5096aec8e6e1",
+      "ae8c90bc-3dc2-49aa-8898-6eae95255bbf",
+      "b2981d29-54ea-4aec-a28c-07c2c367ea72",
+      "b4873d0b-c0eb-40ea-9744-1e45beb53e07",
+      "bf8b727d-868e-40eb-9cdd-652044ca6c5c",
+      "c760b2ae-6082-497e-af72-6ea0e3fc6114",
+      "cd1b8648-416b-4379-9752-863f90ecd1fa",
+      "d5d75d6f-5775-4212-9792-a138ed3490f7",
+      "da34dfcb-a15e-4227-b61d-a4b06eb35f4d",
+      "dd4449cb-a4c2-4483-b01e-095ac5c4bb6b",
+      "e355b855-c397-42cb-8d5b-52ba16a83632",
+      "e61a47df-ccea-4f8b-a4c8-63ef4df7c5bf",
+      "e81e1194-c8e9-497c-be7d-07b72db566e5",
+      "f0a86a95-7d5a-40ec-94e2-a2285db684cc",
+      "f29a4767-ef6f-41d7-bf1a-a2f7ba054cfd",
+      "f5053e95-cc83-4198-8273-0dc3057b268c",
+      "f85d8ab2-3b5d-498d-ba0d-d985ce7aae0a",
+      "fbb1d0a9-e4d4-45ec-941c-960de57f1239",
+      "fc277b13-7da0-4b40-a614-0baac0e09e45",
+      "ff84e284-4a2c-4efe-afdc-717f8fc45034"
+    ],
+    "都市": [
+      "0174899a-e876-4b63-8475-b1c1c43ddbac",
+      "08a735d3-5580-4320-b4d5-f8b977c60653",
+      "0a6ee66f-7659-4b78-ac99-0e6d56240ddf",
+      "0a7a9bd5-ba3c-4ed2-af5b-abad30b03d94",
+      "0d7af4fe-917e-433b-a2ea-edcdbecbe83d",
+      "11a633c5-8267-4982-96e7-a3b77a27b4ca",
+      "153ca5fa-5562-463a-8cf8-759824b4949e",
+      "1cb16622-6764-4633-9036-5694e4bd9c14",
+      "2506111c-c76f-4b18-ad6f-1ba97062cf86",
+      "259901e3-378d-4293-981c-92e28fa2d1c8",
+      "2f6e797e-899a-40b4-8d78-b63c54a6565d",
+      "30aa899d-c698-4d8e-9d09-519683733360",
+      "31b9ca33-ea42-4943-a795-34a43bfd1b6a",
+      "3a271748-9abe-43c2-b7a0-412f0a951e1e",
+      "3cd4c783-c23e-4da4-b16b-bc1424d2c61f",
+      "4500f53c-7728-4fe0-a877-1e80a3a3e105",
+      "46227450-74a6-493b-b920-182248ca0bb3",
+      "4d942df8-15e4-4bfc-8479-e3cfa3fc9ce2",
+      "4ee9d4e8-6df4-44fe-87f4-b6d323f5e9ff",
+      "52a6b8ae-06da-4460-8019-2a9603a34e1d",
+      "52ea5089-7d67-47c5-8f6b-47e75428b6af",
+      "54eeb6fc-4ec7-4fb6-a0b2-c3984c926254",
+      "55455c1a-3e74-474c-9b88-52ece76595b6",
+      "5e895acb-defe-440e-84b4-c079f9c97bb6",
+      "69c903fd-b4f2-47a5-8564-ad79142cc5f9",
+      "75064e18-940f-478b-aa69-489b102b6fd9",
+      "7b2ceeba-6d89-4d0e-ba78-68c6af81bbb0",
+      "7ca9cfe0-3af9-4ba9-88af-14b64926c1db",
+      "7e752cfb-b05f-4bac-a344-ae164166877a",
+      "808ecb82-b4c1-474f-9c44-13a133631900",
+      "857157a9-1f42-4fa9-960c-36c9086c49fc",
+      "8a1e6068-76cf-4155-9e7f-562fb6964d1c",
+      "8b1e4446-5b7d-4400-b90a-065241951335",
+      "94693c40-25a2-429e-96a2-e100af6611c6",
+      "9abe3699-cf87-47c6-8053-2c7aaf39866b",
+      "ac332e15-9fd8-4f1f-939d-fbc84b29179f",
+      "afc8f481-aaef-4a29-a676-176af347fc96",
+      "b6e57579-2441-46db-b877-c29cee61e5f8",
+      "b969c274-225f-4f82-9c71-86973179c4ec",
+      "bc296ae7-2fe8-4f66-8270-6f48fb61d425",
+      "c9829dbd-37a9-46b0-bbf9-22e7e127c6d5",
+      "ca203cb1-09aa-4d31-9131-44037a9f5dc5",
+      "cac3d5db-10a9-48c7-89d0-1a0c83419083",
+      "d2a3a4b5-18ad-4c2b-b7be-c15ae80cc053",
+      "da188c1a-d40a-498a-b68b-756e1de68d58",
+      "dc6f8f29-09f1-4b6c-8266-d5abb6412fef",
+      "dffabff0-031b-47c9-b8ab-c34654844e25",
+      "e30aa596-a136-48d3-b811-5f032adc9ec9",
+      "e451d30e-dba3-470b-bd57-5ffda0f2a8c6",
+      "e863573c-96e3-4944-8ab5-17740a5f6038",
+      "f2533eeb-5ee6-4455-ba8e-559782dadec1",
+      "f31bfc9e-dec0-44ec-a702-05d83ba5fac8",
+      "f782e674-aeb2-40f6-b1cb-1ea846d1402a",
+      "fbe6b440-1db9-4fe9-9c05-1648674ef07d"
+    ],
+    "风景": [
+      "00168367-980e-4829-ab97-b8ea5150cb02",
+      "00389fe9-389f-4881-b6f8-27a33dd94e2a",
+      "015aeddb-c65d-445b-b0d8-fdeae016d6ba",
+      "01a0bafc-ba03-4e7a-b992-51b01cdc7655",
+      "02f95e0a-d140-45aa-b794-3d38e30880f4",
+      "0661f7a2-0250-4293-8e81-2c9513a05a7f",
+      "0c0d6d9a-35ea-4bdb-aa81-1d353859c0f4",
+      "12a173b3-964e-490c-9909-c80ec62de5fe",
+      "14fc398d-3220-4166-ad68-b2f5e936d6f0",
+      "1995ac5a-086b-43d6-acbf-824bdbc17b70",
+      "1a153df3-887b-4233-9221-65e71a8f0a03",
+      "1a15ba2d-e469-43cb-9bdf-aac023cf7593",
+      "1b2cbcbf-c011-43c5-85bd-52d8dc025b2a",
+      "1b9ab107-9640-43a7-9365-440a01144e1a",
+      "1e0d8fe6-4b4e-4093-809f-927c4cecdea0",
+      "1f31c736-249e-466e-bbd5-b1fc47166927",
+      "236d72fd-0fc1-48e6-93b5-f64f61eee560",
+      "2381d919-6f0c-4cee-b28c-82855c95626a",
+      "24805067-6836-4b6a-a6bc-bed85a83bf0e",
+      "24b71bbe-0cbc-4aa0-81d0-5dfc8c879b80",
+      "2546a661-cd39-4716-94b0-47723504d9c8",
+      "2b44c402-e365-45dc-83ff-a3d865ba75c3",
+      "30b98046-a7f1-47f9-93af-40b05692a10d",
+      "31d5a4c6-6c38-40b2-8f95-5a9e02ed93c0",
+      "3324a4fe-73c7-4641-a09f-dabef837cb5f",
+      "36ce9e2c-9862-40e2-afe0-3e3277893902",
+      "37606dc2-598e-4ef8-9049-7a87d1ad2cde",
+      "3f7c56b3-63c8-4b46-b367-f1047d38ae39",
+      "4159a5ff-350e-4a8a-a10e-7c5d93a8c27b",
+      "42920647-afdc-4481-b9fc-6f7eec7f4284",
+      "447371d9-128b-4edc-8362-f87ebfa09124",
+      "489151f8-0bc1-4d21-9c82-7e8b675e8239",
+      "49db8db8-230d-4a15-878b-e549899eca87",
+      "4daafbc0-76c3-45df-8e92-dd7d2f5f2c3f",
+      "4ef9dc82-cebd-4721-81dd-20c25aa46f99",
+      "5109894b-2540-4358-8f16-7f8acb8dfe5a",
+      "525c0d9c-5524-417a-8306-19754bb02e8a",
+      "564c5b96-2648-4974-9344-337c230ccacc",
+      "5925d03d-9032-4e47-91e9-83a70f2e3be6",
+      "5fd1da25-ed0e-497c-a9d2-7186ff05e6b8",
+      "619a4bee-19c0-4b53-a943-6b69ef877063",
+      "6268c20e-fc2c-4bab-a463-36d71784f961",
+      "6423a067-d8fe-4d43-9051-99e2d584e053",
+      "65f3219b-99e1-4662-97a9-85d4aa3b2320",
+      "66130294-f3b6-4ae8-a528-f3f72b17161e",
+      "67e1255f-d02f-4c0c-9429-eafa5dc9c006",
+      "6bf8b312-fc41-4aca-a4f6-ca1014661183",
+      "6fcdd7cf-78c3-461b-84e8-dacecb1ec62b",
+      "70b305f3-9611-4a7f-8ed0-ad05e226f484",
+      "79616d98-1c87-475e-bccc-c3b40a173ed9",
+      "7a2f6b8f-0c3c-487c-b522-b67e283f2330",
+      "7cd15541-b134-4129-8a39-6fc81dbcd6a1",
+      "88b1cd93-1bd6-4809-8190-6294b2e740ca",
+      "88fe2adf-4714-4891-bc4f-399aa30d468d",
+      "927ea471-de8f-4142-a5bf-aee98ff84254",
+      "9373d46d-7457-4ba3-a660-09ba74fef05d",
+      "95118424-90e9-42d8-a62f-5a0661f9a81d",
+      "95baeb3b-41b4-40b8-ada0-5f05d6c168fc",
+      "9aaf1980-cecb-4409-a4aa-be71467732a2",
+      "9cf305ab-1332-48b4-98e8-55d17b2dca0c",
+      "9d070eb2-822b-484b-992d-60c62ed21cff",
+      "9dc179ac-c3a0-4b5e-bd6e-4bef471b7251",
+      "9f694274-9161-4d09-a0bb-8f293198d606",
+      "a21352e5-9db6-4210-a201-2d89f78ba9e7",
+      "a33daa5f-2ef4-480f-9d3b-c820982e6e23",
+      "a389018d-3fef-44e3-acbe-a6fc26232427",
+      "a64a8973-4e51-4e04-b746-3db35c15a707",
+      "a6e99bd1-69fb-4100-853a-0575a8723eb5",
+      "abf34d84-fef3-454b-9aa5-d2040981f848",
+      "ac04dacd-c07f-4289-982a-6d70f831ff2b",
+      "aef00991-7169-4a60-b587-8dde3865f5ac",
+      "b0908ee0-57b6-4cf9-bf56-ecbd5dbf3c28",
+      "b362d52d-bb20-45da-ae7b-3c7ff09efbd5",
+      "b6176644-35cc-48ba-b379-5257ad10deec",
+      "b8005595-0958-46b2-9943-7580b02cc3f4",
+      "ba3a2f37-bd26-4db0-b315-9f2be18acea8",
+      "bc07ca23-ed19-4343-bc45-2f71c4c8024d",
+      "bef3010c-d036-458d-bed9-24075b1b85e1",
+      "c1a877ea-c0d3-411d-8c5a-86572d4e3f70",
+      "c5253c11-121b-4866-9913-36909ddb76f9",
+      "c78e018e-fd4f-4a99-a821-110686537b8b",
+      "cbd3c278-590a-41e0-8d30-597986e18651",
+      "d2c8ec98-6c3c-4d04-8e62-171716ee83fc",
+      "d75f9aae-ea0a-4c2d-af2c-9df6e47ef6e4",
+      "dcc86758-65cc-4f9a-898b-9c2c08ceb080",
+      "df673026-7fef-42e9-9914-3b2cdf844cfd",
+      "e893b310-63f3-4d8a-be2f-32ad60c735d8",
+      "e94af4fc-3fdc-4e2b-9363-a72becae6a13",
+      "ea97e971-c0ac-4afa-a196-e7d55dbcebf5",
+      "ed092b28-816d-42f4-822e-21ac0ad6ab4d",
+      "f02ac4e5-c169-4560-92fc-8ff1d6184d2d",
+      "f4ca2008-9bec-4381-8e4c-4345b968fd89",
+      "f6c64d8d-b3ec-4647-b9e5-9b22a27ee60e",
+      "f9d1c4b2-0440-41ca-bc3c-d64b0faecc4d",
+      "fb15401c-659a-46dc-a668-501f892769bf"
+    ],
+    "食物": [
+      "012654a0-7dc1-496d-bda0-4f6676665da1",
+      "09980fb3-78d0-4dc0-acc9-ec8b369d0072",
+      "17aef7d0-daa8-4b03-9917-c846b264601d",
+      "17ec75e3-1f3a-4271-9d4e-0ae09ebd7116",
+      "242dcf43-e202-461c-a1a5-facc8e7aab81",
+      "28d18b9e-1707-4cf4-a93c-5ec7ffdc01b1",
+      "3dff9c83-a76d-4183-99b4-9b544127d5e2",
+      "3ef52a31-9bbe-46c4-9830-72c9709f136d",
+      "3fb5ca21-4247-4548-bd31-1440e7961367",
+      "492b0616-ba15-498f-86b7-d451eb0c4926",
+      "59733949-6315-44d7-970b-67c66f0a3ab2",
+      "626c8ba5-1409-4c5f-9b2c-e7f43b421d22",
+      "68e14802-9e18-498b-ad3d-30193399cc92",
+      "6a074e21-26c4-4d9f-aae4-41fda745d561",
+      "6eae1305-911f-4342-be1e-515024bd7051",
+      "754a9c18-610f-4dd0-95d4-16e81f42f708",
+      "7fa70ec1-21cf-42f9-a4a9-b471ad4d4e0a",
+      "809b85e9-bd75-4625-b955-924b196fdb19",
+      "80b5fd74-9a56-4fae-8600-428203cd13e2",
+      "86b54cd8-277b-4dbc-bc44-676ee4ca9ab8",
+      "89f03d65-a52a-4eac-bcf8-67ddf6d8ec6e",
+      "8c3b0d8d-bd45-42a1-8c2d-49eea84e6145",
+      "9849e174-efc2-474c-a901-1462098365a3",
+      "99313b0d-a917-4f6f-9c15-3fade080f8fa",
+      "99a8ed83-d2a8-4ca9-93c9-b3ca503fbd01",
+      "9a5de263-d0a0-40ba-9d09-da81e07d0153",
+      "9b783e39-190a-49f0-96e2-ae1b2861f66d",
+      "9f3d8a80-906d-4ba3-910f-ce9b44958e06",
+      "9f9042dc-dd14-4dab-b791-f8f2592c77ae",
+      "a001ac63-75a1-44b4-8eb7-311c0d09f991",
+      "a1508f49-c788-4e8f-bb57-0f9da83f9637",
+      "aa89981e-1c75-40ca-b86f-51ddfa4a1c6b",
+      "b569f5d4-1efb-4a8a-991d-632eaf55e202",
+      "bb9482c3-e80a-4625-854e-b9d8d24dc930",
+      "c93cff8c-24c4-4cf7-9531-7a2d04e7ff9d",
+      "d1b92cbd-27a7-49bf-bd29-edc7ba5637ce",
+      "d2c3bbd6-d225-4d95-ba45-8f1b550991d4",
+      "d2e046ca-07ab-49bd-95e4-eef10bde303b",
+      "d72807da-b2e9-45cb-9d81-0e0dfd5e07a6",
+      "f19c3092-de29-4a0e-95a7-2d28877e72f8",
+      "f1cb21f1-2646-4948-b36c-61cf789bf4b5",
+      "fd428058-97f9-4fa8-a777-38c471be17ba"
+    ]
+  },
+  "moved": [
+    {
+      "id": "00d4f752-ed81-4d05-a9e5-2579648bebec",
+      "reason": "整组舍弃",
+      "src_moved": true
+    },
+    {
+      "id": "010977dc-4b85-4286-bc50-8391b4266ea0",
+      "reason": "整组舍弃",
+      "src_moved": true
+    },
+    {
+      "id": "012cfb53-4e12-4d17-b2d0-c63753084d1a",
+      "reason": "整组舍弃",
+      "src_moved": true
+    },
+    {
+      "id": "03fdb071-70d7-467a-96a2-1162471516d0",
+      "reason": "整组舍弃",
+      "src_moved": true
+    },
+    {
+      "id": "1434347d-73b5-461d-98d5-9c5ee05f78bc",
+      "reason": "整组舍弃",
+      "src_moved": true
+    },
+    {
+      "id": "20bc3417-81f0-416b-9f23-eb8508ed9d27",
+      "reason": "整组舍弃",
+      "src_moved": true
+    },
+    {
+      "id": "2ac5b10a-43cf-433d-95e5-edbc475dd008",
+      "reason": "整组舍弃",
+      "src_moved": true
+    },
+    {
+      "id": "474c80ba-ddbe-4dac-b6ba-3fd23eefe84b",
+      "reason": "整组舍弃",
+      "src_moved": true
+    },
+    {
+      "id": "4c6c549f-0dc8-47c6-a857-9b43d3a6bd56",
+      "reason": "整组舍弃",
+      "src_moved": true
+    },
+    {
+      "id": "53417811-79f7-46e6-9dbb-3cc993c4adcf",
+      "reason": "整组舍弃",
+      "src_moved": true
+    },
+    {
+      "id": "74ea990b-733d-4216-8fad-6b78b5c708c2",
+      "reason": "整组舍弃",
+      "src_moved": true
+    },
+    {
+      "id": "86c55411-5928-44de-ad87-fa9794866126",
+      "reason": "整组舍弃",
+      "src_moved": true
+    },
+    {
+      "id": "90848def-7c78-4897-b858-cf6bb7b7d85e",
+      "reason": "整组舍弃",
+      "src_moved": true
+    },
+    {
+      "id": "ae0c8ca6-ec9a-4dae-9082-b0156a99da97",
+      "reason": "整组舍弃",
+      "src_moved": true
+    },
+    {
+      "id": "d7f52218-b652-4712-a619-db9f6071cb2a",
+      "reason": "整组舍弃",
+      "src_moved": true
+    },
+    {
+      "id": "ddf2669f-c96b-4efd-9574-295eed372ad0",
+      "reason": "整组舍弃",
+      "src_moved": true
+    },
+    {
+      "id": "f761f449-e2a6-47ab-b0db-4cc3f9286285",
+      "reason": "无保留version",
+      "src_moved": true
+    },
+    {
+      "id": "fbb514a0-a9e8-4e70-96f4-015b5f2e314c",
+      "reason": "无保留version",
+      "src_moved": true
+    },
+    {
+      "id": "0021ab80-ab63-45b6-9731-6c1b72f816a4",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "0171003f-f16e-49be-af2a-27b48496f072",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "044eb5cf-c1ea-445b-8bfa-40cab4b64bf2",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "07de8740-e6a5-4e04-a499-391a6ae6a630",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "0902f064-85e0-4f76-b367-bf96f72f84e0",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "0e029afe-aee5-4e14-bb19-6fe5e99af55b",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "0e6d700b-933d-453f-839b-980146351c0d",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "107f0d34-0778-4414-85de-1fe2eeab2c79",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "1175b0cf-b436-4554-832f-4ef3f36a7100",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "12132140-c730-4576-8dee-29efca5dbd8b",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "160cb8d0-e056-42de-9b23-c8ea17532e08",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "1b008416-ede7-4968-a438-1b630aaf21fe",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "2ad7ad44-81e1-462a-a811-77ef292e55db",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "2bf560be-d89c-4cde-800d-3a55936fe916",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "2c508f5a-09d2-4b40-9b5d-817b43a03887",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "2d4e0c4e-6752-41e7-be0d-7f9ab3a7f9ef",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "2ddf7317-6eed-453c-b67b-4ee7473ffda5",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "2e994255-3ef4-40f0-abc1-ffce801cbc43",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "2faf398d-4bf3-421d-ace4-90c27b153c31",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "387b4da2-8090-4532-a816-45a53f817415",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "3a0e3c80-27dc-457d-817f-30b3ec00ad9c",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "3b0b3f80-b1a2-42f5-b41b-81b2566b87a0",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "3c947293-cade-426e-b1c5-fbe79e2b473c",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "3cba1638-183b-492c-9d57-dbb36cacc68f",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "3ee04435-5a5a-4284-abb7-9e9dcc50a395",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "4510b838-c21c-4b9e-94e2-d0324c84d545",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "45691faa-8044-410d-a8d5-b5ed6fdf8b5d",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "47cc1907-95e7-4b0c-b85d-374c1c791820",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "4950819e-da43-4e2b-884b-c3bcda925910",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "52fcca57-ddcb-4176-8e6c-386cb4fa211c",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "56d0fd92-0515-4201-be9b-80f0975ab7aa",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "57881070-1052-43b3-b3e8-55aeef09c2f9",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "58e563e1-021d-45b0-b010-43c06f739dab",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "5bfb39f4-715b-4e92-8ea0-d07b32eb614c",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "5da0bc96-1b04-4661-bbca-e5232ad22ef3",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "5e42443f-05df-4e1c-a88e-9b4fec4046e8",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "60436b25-1c8d-428d-82d4-2cd32679d7d7",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "6e580251-4a19-4de5-abe8-b2d740c6cf2f",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "77b235a7-2fdf-42cc-ab72-e787a62ba9bc",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "784ad6f1-9ebc-4a4d-8f2b-f8773ff8ddeb",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "79261f25-98bd-48ae-91a7-3ed330e8b216",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "7961211b-1f05-4802-ac77-9667da705002",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "7bad0b83-70a7-4321-8695-90ef53873cc5",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "7e81afb7-7362-44bd-b68b-5a9114ed31b1",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "7f35be66-cb29-4c0b-9a06-f1e2ccd2e055",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "85691483-3468-44f6-bdce-c558586346a4",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "8a361c66-9f89-4733-bf64-3bca0fd7bca9",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "8c2973dd-b333-4a31-8d26-dcc66b1dd6a6",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "9031cd0d-c389-48ff-869c-a441931d04fd",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "9078f81f-c38c-426c-bc2b-5f4120963271",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "907c5009-96f8-46bf-824a-86d232cb35be",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "90a5c989-61f4-4ef1-ba43-bf5422bb8f7c",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "90d8ab6f-9bc7-4615-9912-b7cf2864a7fa",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "920cbac9-8b05-4433-b126-9e64eaef1fd3",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "94683a14-82d6-4356-a1b8-b2a490254dc8",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "976d64da-1093-4e18-b786-439e99fe1333",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "99af7dfb-6632-4808-84a1-78136ede4cbe",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "9bbae662-55c2-45d8-a1ee-a069a09677a2",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "9cbb1813-8b4f-4003-bc53-74a8e49678bf",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "9dd8bd22-e325-4c1b-a57b-ab0c67ce28c9",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "a124ef65-6297-4843-82c4-5e8959dc4873",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "aa42cbf4-9246-42c2-a47b-4b56d5007199",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "aa87a9de-177d-451b-a77b-6be8366131b5",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ad808712-3136-4d15-a42d-99b129cf2848",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "af8ba42e-466a-4652-a449-43d7c05ddbe3",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "b28ddb89-9561-47cc-aa1c-c5d7ef0dc7f4",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "bc3ad144-8b0d-4fbb-824a-140a5b15bab2",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "bd5b02f9-a6c7-4ba9-a1e1-7fdbaebf1c0a",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "bdfa6644-2610-4a01-9b3e-4e380df0db93",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "bfa5ea06-b238-45a4-b7ea-67d4a0567aa0",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "c1065438-0df7-45e8-a024-365cbfa4e158",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "c151de80-f89f-41d6-a511-75f54a49fe9c",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "c4e3997f-ae6f-4a62-a262-044768059317",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "c4f39bad-2028-432a-926e-be0808013c81",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "c5f00ee9-8486-4b88-9187-494c01be5a8e",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "c70db57e-8754-41d4-b3a8-fbe688e3b2a4",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "c73b2542-4d79-4d76-81e8-61a0577b574f",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "c7a0234a-2fd8-435e-936b-5841ee3c1588",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "c9035c96-6e03-4f0c-920a-e5a7693dc265",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "d2cea6b1-2a36-43f0-b53a-33ff3d7b8ae0",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "d8c5f81b-7a5f-4859-b6d8-f6d795ee40aa",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "d96c8ddc-9392-4d13-a2c5-3136b36b0076",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "db8c5308-3a39-4196-a8aa-856d8c9e8d4b",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "dd553c0c-1c0c-437d-84f0-7e1754d3a114",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "debec5b6-0eb2-4836-8e2d-0c1993a01dd7",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "e66cfda8-29b2-4ed2-bc18-e008a685ea91",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "e85e1c60-3e25-4c8a-8a66-5889b103d3f5",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ecf10a57-15c4-4e63-a1aa-2ad98a878d52",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "f08ce94d-8ef3-455b-8024-4d0ecdcefa18",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "f4f3a4a0-35bf-49da-a840-d810da8e03c9",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "f58f3e61-8d6f-43e6-b47b-338358438c4e",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "f7f1ccae-1128-4fe3-899e-bb01d72fad3d",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "f7ff58d9-f8aa-4717-b53e-dcab890ab79e",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "fa481b09-3832-4c8e-bf4f-b453b575178b",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "032091ad-ce52-44bc-91c0-e798efb6cbf4",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "06c8aa86-9407-4379-b2e2-6842b74358b4",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "0741ad39-eda0-4962-9c17-db8fa615b03d",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "07ce9db8-459f-491f-8a9d-29123e127100",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "0f0f7122-ee73-453e-8b5d-0e8ab0b0a420",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "17070d6b-122e-4707-9729-1e8b873c288f",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "1b7547a2-9557-4d10-a995-6a56ccb8f6c0",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "21c56aac-55ad-4e47-8d48-68a1a4471215",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "22a73430-7db7-4473-a0ac-8d7b5a49a0b6",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "23c97e78-1e5a-4ebb-87bf-44eed44d48f9",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "29a856f4-cd54-4bb2-9e48-e6d98a137658",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "2c92ffcc-6f20-4c83-939f-763e93dcb554",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "2f3727b8-3708-4cb6-b3bf-66bf484d3da4",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "39bd2a92-4a68-4bbb-8a8e-0af9eab95813",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "3a086411-f4bb-4452-bc86-64a4e723e42e",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "3c62df8f-df4f-4c30-b858-8557e2e1bc11",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "3d1f56fd-0b52-4fff-8405-7dcb5a44550d",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "3ee46805-c6f5-4f92-adc7-72f78bf2cac4",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "4cc4ebe6-3247-45bf-adca-bf985749009c",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "4e4e20f8-9cdc-4e55-b7e9-ea2c3d17babd",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "53299b41-86f1-4a43-8261-0bf407cbfa90",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "5421e19f-6097-45ed-85ed-e41bd010061c",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "5adaffe7-5eb6-4cc2-bccd-da7113a0016d",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "5ae01693-1b10-4006-b48c-59ca33f50c27",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "5b43d8f3-c849-45ff-8357-f733e1a5a7be",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "5b65adec-9d6a-4ec0-ab5d-1a885aadc6e2",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "60abee3e-1c61-4b19-9014-671c993c8d30",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "6175c006-205c-4fb4-b5d9-85e9d7cfa505",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "66babdee-5d55-4513-b981-096f4379b619",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "67b35d08-07d4-402a-9b01-105b9e1a269b",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "69d8adbb-9a3c-4846-87c8-5a52da4577db",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "721e314c-8391-4a6e-a0d7-ccb6af8b8cf5",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "75d4352e-d381-4f94-827b-f2f03578b8b7",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "7ba2ac8e-2ccb-47db-b472-a6b55b39ad5b",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "7f9a675c-a45c-452d-816e-dde2a8dd8b95",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "88f112ec-eba8-42bf-a6ff-c6f7e569b9ec",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "8bbcf015-11f5-4650-bf6c-6c0bca7b6e81",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "8d493ce1-cce2-47db-a8e7-d67f8fb7f339",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "8e0d7c71-68e7-423a-8a66-66e8e6155ff6",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "8f0a3d2f-d7ed-4363-991f-fafc0c95a34f",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "8f5e3747-b266-4629-9b61-7516ed0d6d06",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "9a23091c-2acb-4c46-832a-3b15a85c420b",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "9b1a7162-20c1-4c42-bf52-00115046473f",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "9b4585fb-f789-4c0e-b4fc-d196bdcb0359",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "9cac5220-7733-4012-8e26-b3c061e9dabb",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "a16b0384-8e4c-42a2-a40a-d150a0e064e1",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "a511b422-bf48-4fc9-82d7-6f1697b09f5e",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "a57af586-4b87-4df5-9765-cfcc8eae3de2",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "a64a317d-79cc-4e6e-9d65-dcb9aa95a5e9",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ab10ad0e-af6f-49ea-b69e-7e3a7139d065",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ad19db15-93b6-43a7-ae7a-860ed81c0f15",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "b486d0ce-2272-4b67-b4cb-e4c41b689877",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "b642c980-f10e-4f53-a59a-ba9db775d30e",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ba22c5b3-e452-457a-ab52-54a8175371bd",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "bb5e85a7-1038-4646-9033-bdc5f8afe7fb",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "c132a1af-fb41-4fd3-bc44-659d2d9cb7c9",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "c9c24d39-e6cb-4339-89c1-4ac9eef72e50",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ca1495ce-c4a1-43d1-8655-4b98f3abb502",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "cef2a727-41c1-4098-92ac-95262abcad34",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "d1cb87a3-ff9e-445c-b509-583902953579",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "e18600a0-4b1c-4076-b931-a97b23bd984e",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "e372cc0a-dabc-4cba-a6f0-c307a730215a",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "e5bfe8e5-35f9-47e6-9281-79971768674b",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "e623cb9a-b861-4312-8634-0b09dc6833a3",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "e64df4ba-9a2d-4cb0-b058-66979f1c000c",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ed852e01-322a-4610-a4c3-e7d88ffa458b",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "f06a55d3-0c85-4d92-b2aa-992cc88d2ac4",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "f4720e27-04fd-4c21-a14a-6b73858bb5aa",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "f53b1b5a-ab39-4a80-aa0f-4d5bae57ca6e",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ffb40085-8170-4ea1-918e-754c363a5ca6",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "0506a3fa-6848-4bca-95ce-4a37978d975b",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "0758e28e-53e8-4552-a602-a45328d58127",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "0e0e2eed-5036-4733-9631-77ae281dfe93",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "1dc221f2-6a94-497b-a670-26852a699981",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "1f7b17df-f382-49b7-a848-21fc4265e36a",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "23da6b21-e83d-4468-9e2e-f8fb9d3d14b5",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "23fa7fec-c467-45fc-a8d0-82877560ba72",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "33387e68-a9c3-42a1-a3c4-b8ccd1028130",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "3be4dfd9-362d-4506-8b89-596157753221",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "3c46090b-e754-4ac4-868b-c6e4080b4c49",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "3eba112d-cb81-4e7b-bcbb-0d7b6a6fe9b3",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "40778a72-796d-4555-9a3d-a8db6dd8d214",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "42e89c85-bb15-4f27-aced-f7391cdaa6c9",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "439301ee-b648-4733-bdff-5fe7939f1d51",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "44e2fe89-4708-4a21-b110-141c1825e1a4",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "493d32d7-3002-4acc-a717-1eb434b2a9fa",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "49c38925-cfcd-4c1b-8208-d91ceafe1afa",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "55c40689-9795-400d-9ff2-34de97b659d7",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "5824afb5-e50c-4466-b585-8cc3801cc374",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "5a69274d-6be0-4aa4-bb5f-fcbada45fdd8",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "66da9048-9d6f-40e7-88ae-0793a37fdd24",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "69897764-6d3a-41e2-b8f1-bf35b9bb3825",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "69b19039-326f-4f66-9230-0d25006a7500",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "6b5c11db-79ac-4e41-be71-efd3aac2f1c9",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "74a061a4-a398-4f31-9acb-eaa494b4df1e",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "78156402-bc32-4fe0-86a4-b24223f167a2",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "79eb7e25-ea5b-4bdc-8c5f-4d7e49033cde",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "8177a119-ff6e-4b32-ad34-5d07538ea9a9",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "8661b126-271a-4204-b12e-d0b1fce14765",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "86e05558-0f18-4723-ac65-8b18c7a02135",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "8cb26879-a204-403c-9810-80aaef20cd4d",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "901ed21b-4808-4126-98cc-c7c0acd28c2c",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "934881d6-3bdc-496a-9f54-509f02f66a3a",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "9457124e-e30b-419b-803b-329403c63987",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "9b90cfa2-dfb5-4aef-ada2-88c9c2cc0cf2",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "9dc0b6ce-76ef-49d1-92ad-d5f38270c684",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "a39b0639-1ca0-48b5-a72e-97746d6fe67f",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "a4e83e0d-b35b-4856-9949-3fe10cdb1ac0",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ba176281-8e8e-41f0-bb0a-3b9c795446e3",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "beb9a481-d94f-4ef1-ba9c-7b142a2f87c9",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "c1c5fc82-1f17-4e53-b6ba-d29af5258645",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "c22b390a-3785-49ac-841e-531f1b843a47",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "c7ad42a3-845c-4d87-97aa-2332f142d1b8",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "cf1b8468-642c-43bc-8d83-4ac5e1658480",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "d020de9f-f660-4022-9b4c-8efe0c823505",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "d279138d-a327-4de1-853e-1dd3fb724545",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "d86f0319-4063-4fec-a46f-66acfc7a0285",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "da9ef82d-c0eb-4f0d-b57c-83e0df56a9a7",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "db0ca3c4-879f-41c7-9c9e-016c62b2ecdf",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "df5f8a86-97b2-48c4-b57d-48d6cbad9538",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "e0984e93-0a89-43fc-9f03-ea8860f92305",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "e1a162d8-20d0-4975-a43e-9f1ca7f36e68",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ead51a3c-bdc8-4315-8cff-ca5fc5365b6c",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "eef3a5b2-c403-41dc-b723-3122371696dd",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "eff54065-2d95-4af4-abda-d804c1e3085b",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "f82f6f83-ed8c-4102-a13b-d91bc662048a",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "f98d644f-e60e-41d4-9995-90571cf1b247",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "fffc0540-46c9-44e3-9baf-f65973dd42f9",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "09ef0814-f520-4fb4-8a18-fa71153c92d6",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "0be723c2-8160-40a7-a1bf-ef6392440bc2",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "0f18968b-7e08-4276-862d-201c29eda9cf",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "0f1ef472-31cb-4de2-9918-eccb36b936e0",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "119ff513-340f-48ae-8979-9ad6c9a1bdaa",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "161dbe12-14a2-4db8-b1b0-17888e2d4167",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "19b8ce2e-1535-4ade-9ea3-57c253010f13",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "1c3e4067-31e1-4e51-a172-e3fd0ba420ed",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "207155fd-499f-4a01-9695-6bab5c2a524f",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "2646515a-5567-4d80-8bfc-bfcbe962c050",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "29fd0158-9114-4fd6-8cca-23633d348aad",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "2ab96d8c-7852-4980-9a8a-06c507641a12",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "2e18cac7-f018-4bd7-99f6-6a3121314fee",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "31b14922-27cf-492d-a098-12b9f2aa39f8",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "32b1cf47-19e8-47c6-82b3-a1691b576e0b",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "34e5dde1-f929-4498-9818-c6cb266bf2d8",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "369b286c-7106-4327-a117-4f0e255d408f",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "37c584c9-3754-4fef-b498-b71835a5535c",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "420ec003-ec9d-4ab6-9e7f-0c66f6a2bf0f",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "446cbc8f-9663-4494-93fc-3557a7e8da0b",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "49a16e28-c1a9-4a5c-bd9e-f5a1bea57e0b",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "49b5683c-d93a-4bee-8341-fb49964fb608",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "4faa3e9d-bb96-4fb9-99a7-bc3708e31d4f",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "50048fac-d454-4b32-8f56-0716527d6e17",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "50d61e1f-c5ba-45d8-9bb1-54ecd4786200",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "53399d86-4811-4ffa-8afe-2026589a12ec",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "5ed024b0-4dc0-4046-b1da-acd3fed62484",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "6c1f5932-0a66-457e-8457-003600b6adad",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "6d854b8e-613e-4936-bce8-bf3ca5f84ec5",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "768f9d43-60c0-4c0b-83cf-1d75b687d073",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "7951a82b-f3c1-4606-8b96-fcadc99320d1",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "7a3e0f94-4d7e-46dc-9abc-9a7a2d063dfa",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "7cfe3581-ba6c-4be0-bf3a-b0f716dcf05e",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "7d25191a-7b18-4520-bf0a-d25556d5e6c5",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "7dcad447-d800-4930-9213-5328f8e6471e",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "8fc6e535-f63f-45db-ba92-8aec1ba7f98c",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "94689339-3a7f-4f0f-986f-3234cb6d9ac3",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "95749ee4-33d4-4061-ac4f-5c3c08996a54",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "95e6de77-cab8-424c-9f79-457442978ae5",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "9633a077-a314-4fcd-895c-04e0974b2dee",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "97c481a8-5c0b-4e5b-bd77-2556c2bbe673",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "9882ee3b-b3d0-40f9-ae7e-755bf80ac53f",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "990e9889-f6fb-44ad-acb3-b3ee633a1b58",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "a1c8eb3d-bf1e-42ab-a7fd-c15eb578d488",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "a2c5fec3-f3f3-4ad2-9d87-d0c277b92e09",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "a57f3ba6-5ecb-4aab-bb01-34f6544817bc",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "a875e32e-cd56-455c-b68b-b206b12e9f4f",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ae0a0564-7381-4cc9-8b3a-fd74f0da7aa0",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "b4e7a6d3-911f-4de9-9173-9683a3cde4d2",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "b5ba509d-922c-4dd2-935c-d1ad1025c7b7",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "b6039e72-1516-441f-a774-e3664a7dfe10",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "c1c35f17-96da-4cee-9ba5-e2f541fdc8f6",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "c2cc39fe-3707-442f-acd9-d31614f8ac06",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "c4aa47aa-fb64-4702-afc0-644593f189a1",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "c8217103-f950-4968-9b47-7c3d0b58d53e",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ccba92c8-5531-4493-b1f7-60b86664625b",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "cf249bb9-6b18-4227-aa2e-80630fe922b4",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "d3baaef0-e95e-466c-9403-a20c868b6dd3",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "df547496-1b04-4250-b43d-257de53d78c5",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "df69708a-db84-4044-9c53-cbc51214de56",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "e8f6c3ae-ca5d-4398-99f5-2493a8d0f5fa",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ec0b87f2-035c-4ac6-b5f1-08c4021d1be5",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ef48a839-cb94-4d71-bb59-c91c380cbcee",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "f195919d-3b4b-429d-836d-5b42f227efce",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "fad5f66d-1116-47b3-b3dd-78c9cd61f3a8",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "fc19527d-def4-4d99-978e-ef6c6fc5ccdb",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "fd3e2f94-8e50-4b32-aead-df5fc92ee787",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "fd7612ca-9a18-4ef4-9b5a-e3068048516d",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "fe6e6e2a-04c3-47b3-ad44-00be95a28608",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "051743cb-8cf6-44d3-8f6b-404a2f2e16af",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "052b580d-80df-4dc7-8a4b-a0024a560dad",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "061033e2-3d9e-494a-9621-fdbebf358618",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "12f5adb6-fdb4-4248-9193-b23398d85d8a",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "1799dc38-8f5c-4f7a-85e5-fcb498986057",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "1918be7b-9cd3-467e-856a-0d3c40fd6274",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "2347788d-690a-4c21-a290-90429f4cb72f",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "2792df0c-4d72-4974-b41b-325120faddb3",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "32535f7d-3e8c-451e-9bff-4301ac98e40d",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "448c5cf7-97ad-403e-a687-aef55b7ae84a",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "4cae7d11-0a89-4ccf-a7bb-3254c7aaff59",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "63198c77-71cd-4bd2-98f3-922429c7dd20",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "6a05feb6-29fc-4b62-a995-0d4106093a9b",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "6a34dfb8-7fb7-476d-aabe-316f726c3389",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "7ed745ee-b9c0-4ed3-bc20-c67753f6e901",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "7eed0b45-5431-4d59-b7c7-57c20a142cbf",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "7fad8dc3-5bb1-434f-9002-5fd512a094ac",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "821e5475-f10a-4fac-8adb-e8b8962817df",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "876b85ba-5550-491e-bd4d-fa47109473d1",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "88d8b83d-d465-4740-8a0d-0735bb1a03eb",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "9abd1016-0486-491a-b6b9-c7a7bfa5e384",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "9d15b8f9-dbcc-4eca-81c7-b5b75ce18169",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "9fd5af29-8499-453d-8972-b99e6287065b",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "a7fd91e6-5609-4f4f-92c3-1546844165aa",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "aca60577-0042-4dd4-81ac-bba3fb648f26",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "b7c042e9-507b-47c3-bb3b-4d2a4ce5b06d",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ca2c3257-9bea-4c7c-b3da-a9fd68870579",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "d0f03cdc-214f-4cf6-8125-ef37a3f88c1a",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "d18c5c26-e715-409e-9aa1-98f80f08e719",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "d2e75e75-5e57-4f38-8f37-14c3c4bc9ed2",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ed13affe-adac-4377-ab17-15cb4fb23ece",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "edc4b79e-6c72-4cce-af5f-1f725d2d3741",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "f5a3ca1e-e75c-4ffc-9326-48e2c743891c",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "f7acf124-b4c6-486c-b157-03d1a42d2cfc",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "00278a2d-31bf-4fa5-91d1-412547760a5b",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "036a35db-e98c-4fa0-82e4-d205bbaa10e2",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "04093935-d587-47f4-a5ca-e422e0a7649d",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "058cf6e9-e9d8-4596-a17d-843999fdcafd",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "0b350e95-334a-4a06-a0d5-6e8c37ee115c",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "0eb5f118-91c7-4f14-b6a5-921484b90372",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "12b91d45-47a6-4b88-ae47-b860b97693a0",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "12e6f2e2-09a7-4052-93fa-6acf5a3768a6",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "179142ae-71af-4f26-bbc4-748456a8d2b6",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "1ae160eb-e5e3-4793-8ac1-0f6e6799257e",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "3012b114-56e9-4e1f-b119-553d0ea115ef",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "35867a57-2ad0-4564-b56b-cb9ba8e063c3",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "3694c82b-0587-42d8-8c1d-6566644f3420",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "3bae5bff-4d87-4b8b-a1c1-fe173c463c86",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "425f1e59-4a50-47c1-84fc-92778ff8d95b",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "4945620f-940d-4e72-beec-f04c74896e45",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "4a33af4c-1646-43aa-881d-372e090e9a25",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "4d73f965-0672-4ad4-8793-0d9db11a3444",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "51a78c1b-481e-4dd6-acfd-aec28ae9641d",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "527eb370-e472-4b2f-800f-d98d773a6eaa",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "535dfd51-f8e2-4238-91e7-57ca040e99bc",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "56ad4199-792b-4c78-8c5b-a4476e151a29",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "5b49cdef-f02f-479b-954a-88494d8bda08",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "5d276bbb-1b5e-4e26-8e30-1d563d56a1bb",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "5ee50930-7dbf-4b5a-bfe7-7fbd56433548",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "6034bfe7-15d2-4d05-a919-7bb3f6e60394",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "6188449b-cddd-4060-b24e-75ad06aaa678",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "61ebe3c4-294a-4bbe-9948-b2eb44e43994",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "67c90fdb-71ef-4cbd-830e-c746484a1193",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "69a5aac3-8c62-4b95-b217-01742202d19a",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "705c35de-19a3-4515-8d09-b8dfdbcf6773",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "7109e078-3596-4b00-9922-548e4131e7a0",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "7192577a-3fe0-4b74-a04c-2c47877cc24e",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "777594c4-d567-4ccd-aa7b-1cfc71fc7b34",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "795dfca5-9f47-4033-8aa2-588b9f10ecdc",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "7b0d835d-829e-4d55-912f-c3915e686892",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "7e828d04-3a9e-4477-a6a9-d57526026160",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "7e942666-1839-47c9-afd3-79f0815afd41",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "81eacd91-a7c2-40de-9651-1141d7f07eff",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "81ef4812-f2fe-44b5-88b8-f5d5bb5e91cf",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "85a3d958-73ca-4b9f-82a8-8f639928c320",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "8649fe87-5696-42e1-be4f-67757a82a1d9",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "89728a0a-d5d2-44d0-8c3a-e1d7124402b5",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "9b6f43b8-4789-400d-9f32-ad451139d24d",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "9cf95234-1fdb-4f48-adce-4fbee7a8e6fe",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "9d3601fe-fd22-402b-a443-58b72761d3de",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "a5a1b0b6-aed1-4381-8cfe-1c5144af4f38",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ac826db6-f848-476e-9b3a-44ab09fa5859",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ace3b66b-dfa4-4e81-a0f4-1604224ca96a",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "aec88b4f-92ac-4d81-91bf-37ec1db3c53f",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "b1900139-7f16-4add-b86b-482a55c5adbb",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "b1b6c390-5904-458e-9ba0-33f799b2ca2a",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "b30df313-3290-4832-b968-1b1cbbf6eb63",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "b5432bdf-1deb-4e43-b7c4-756e258bca0a",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "b72bea11-97ad-40d3-a853-ba0fee3cafec",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "be3bc11c-2188-4a7c-8e49-16fcf8e9e746",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "c0f419fc-c9fd-4b00-919a-c0656440d2ec",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "c2e625c4-b7de-4b1c-95ff-61d1840b405c",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "c3f9eac2-42c5-4003-8a00-59e8f30dfc14",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "c7e4ec82-1679-4266-b7d9-fe566b144e79",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ccd069d5-6e02-4339-b4b3-443a6321bbd9",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "d133b233-1184-4818-8ad7-7556b56a5ce2",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "d3402f6f-d514-4cb7-a461-3dc56c6a36a1",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "d61a3f79-44be-4841-8807-e044cb16d030",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "d666c721-c542-4c80-80e4-68d8a58ac437",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "e0689863-4ebf-476a-9d37-da923e481687",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "e0c34303-81a7-43a2-8045-b8c60f2e6400",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "e6962950-21a2-403a-8b5f-64ffd57666a0",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "f86d4b17-e1a1-47ac-b3f7-17b796744d7d",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "fbd981a0-5462-4df1-ba3b-6f22c1a61257",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "fca4a32e-7a04-4f0b-a686-396a65620d18",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "fda261c3-8b24-484a-b190-cbf02cbe7e1e",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ffd9dec9-b7c9-422b-8ba8-2697dfde2c85",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "08c171bd-a5a1-4cea-9e6f-5a46dc2ba18b",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "192f1423-6c47-4ee1-ba6d-72b43d48a4f0",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "22c852a4-4cb6-4e58-ada7-4c341616a430",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "297dc7c9-69a9-480d-8b16-9de1b79e86a5",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "3066573e-f285-4a8e-8dff-d64a18fb93c2",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "37294b2f-9df1-4277-a20b-5e126a956053",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "40c7c612-fc62-44bb-9742-62ae6757186a",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "53b1f1f9-1b6d-4170-9be5-e98b73d29250",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "541322d7-ccee-4fba-b3b4-5cf3b6a412dc",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "58ee139a-80ff-4f1d-b8d8-947dcf9a0f74",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "6f7c0f75-416f-4a4c-bdbb-ec0a2d6cc794",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "74b358b0-35be-48dd-8d81-fe49d07c11e2",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "762de092-1669-448b-8276-c3399f2cf7d8",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "7ba88e06-7399-43d1-9b8f-47122de69059",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "7d3e065c-1de7-41c5-b7b7-8c1c6b9c68fb",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "7ed0e72f-3400-4fb1-bab0-aa2252d34b7d",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "8a5e64d7-d24a-4a4e-86d5-c5012ce067cc",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "8cdc593b-fe11-429c-9759-5e8c87fc751d",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "8ff8222e-0cb0-47b3-bc09-565aa283b764",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "96a2a97d-4e4e-43e8-bd3d-8cb7c085189f",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "9b856dd1-3b6b-44af-a9b8-9a3d8f89061d",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "9f7d2f81-32a4-4789-a1d5-ddd76a861dba",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "a42cbd49-c6d2-477e-8094-1e20bb6b6e12",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "a48999da-dfa7-41ea-adc0-64d15b632f3d",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ad26d719-2c76-415c-993c-06e6b60831ec",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "b33abb4a-06f6-425e-88c0-6d7c3ae3dd39",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "be85fa23-e1e3-4111-aa23-a4617fbf3ddd",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "c36867d2-ab44-4cdb-a673-532f9595cf13",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "c4fd7926-502e-4aaa-b1c1-0f49d8b995d5",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ce261cfb-a10a-41bb-ad03-d76dce5a7f50",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ddfafd79-c3ca-4547-a9e0-ef54c7cd798d",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "e71c50b5-1ecc-4f04-a662-3e0333f3ca9d",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "f40cc473-e6c6-4cae-b8b2-0f53b6d00bae",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "fe27c07b-1803-40a3-b251-cf0c6cb9c8c4",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ff44b4e1-2ad8-4117-8322-66ba2bb094f5",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    },
+    {
+      "id": "ffbdb0fe-52d0-415f-8445-936f8ee5b2d3",
+      "reason": "分层抽样未选中",
+      "src_moved": true
+    }
+  ],
+  "anno_backup": "/home/chen/Work/adobe_lr/fit_annotations.json.bak_before_resplit",
+  "restore_hint": "恢复 = 把 moved 里每个 id 的两棵树目录从 train 移回 test，并把标注键 train/<id> 改回 test/<id>（或直接用 anno_backup 覆盖）"
+}

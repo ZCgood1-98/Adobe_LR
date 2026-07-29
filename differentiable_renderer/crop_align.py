@@ -102,7 +102,8 @@ def needs_crop(orig_size: tuple, edited_size: tuple,
 
 
 def align_original_to_edited(orig_path: str, edited_path: str,
-                              force_sift: bool = False) -> Image.Image:
+                              force_sift: bool = False,
+                              return_info: bool = False):
     """
     High-level API: given paths to the original and edited images,
     return the original image cropped and resized to match the edited image.
@@ -116,10 +117,20 @@ def align_original_to_edited(orig_path: str, edited_path: str,
     If SIFT cannot find a confident crop on a same-aspect-ratio pair, we
     fall back to a plain resize (the legacy behaviour).
 
+    When ``return_info=True``, returns ``(image, info)`` where ``info`` records
+    the alignment actually applied — callers MUST persist it (the 2026-07-13
+    lesson: fits that only kept a boolean ``crop_aligned`` flag made their
+    input geometry unrecoverable, forcing lossy post-hoc SIFT re-estimation):
+
+        {'method': 'sift' | 'center_fallback' | 'resize_only',
+         'box': [x, y, w, h] | None,      # 原图全分辨率坐标；resize_only 为 None
+         'orig_size': [ow, oh], 'target_size': [ew, eh],
+         'coverage': float | None}        # max(w/ow, h/oh)
+
     Returns
     -------
-    PIL.Image.Image
-        Cropped (and resized) original, same dimensions as the edited image.
+    PIL.Image.Image  （return_info=False，兼容旧调用方）
+    (PIL.Image.Image, dict)  （return_info=True）
     """
     orig_pil = Image.open(orig_path).convert('RGB')
     edited_pil = Image.open(edited_path).convert('RGB')
@@ -129,10 +140,16 @@ def align_original_to_edited(orig_path: str, edited_path: str,
 
     aspect_diff = needs_crop((ow, oh), (ew, eh))
 
+    info = {'method': 'resize_only', 'box': None,
+            'orig_size': [ow, oh], 'target_size': [ew, eh], 'coverage': None}
+
+    def _ret(img):
+        return (img, info) if return_info else img
+
     if not aspect_diff and not force_sift:
         # Legacy fast path: same aspect ratio + caller opted out of forced
         # alignment → just resize.
-        return orig_pil.resize((ew, eh), Image.LANCZOS)
+        return _ret(orig_pil.resize((ew, eh), Image.LANCZOS))
 
     # Try SIFT alignment.
     orig_cv = np.array(orig_pil)[:, :, ::-1]   # RGB -> BGR
@@ -142,15 +159,21 @@ def align_original_to_edited(orig_path: str, edited_path: str,
     if box is not None:
         x, y, w, h = box
         cropped = orig_pil.crop((x, y, x + w, y + h))
+        info.update(method='sift', box=[int(x), int(y), int(w), int(h)],
+                    coverage=round(max(w / ow, h / oh), 4))
     elif aspect_diff:
         # Aspect ratios differ but SIFT failed → centre-crop fallback.
         cropped = _centre_crop_to_ratio(orig_pil, ew / eh)
+        cw, ch = cropped.size
+        info.update(method='center_fallback',
+                    box=[(ow - cw) // 2, (oh - ch) // 2, cw, ch],
+                    coverage=round(max(cw / ow, ch / oh), 4))
     else:
         # Same aspect, SIFT failed → plain resize (legacy behaviour).
-        return orig_pil.resize((ew, eh), Image.LANCZOS)
+        return _ret(orig_pil.resize((ew, eh), Image.LANCZOS))
 
     # Resize to match edited dimensions
-    return cropped.resize((ew, eh), Image.LANCZOS)
+    return _ret(cropped.resize((ew, eh), Image.LANCZOS))
 
 
 def _centre_crop_to_ratio(img: Image.Image, target_ratio: float) -> Image.Image:

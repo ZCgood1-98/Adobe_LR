@@ -1,0 +1,35 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[gen] 加载 Qwen/Qwen3-VL-8B-Instruct + LoRA 5_training/output/grpo_wbA/step_50
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 4286.46it/s]
+Loading weights:   0%|          | 0/750 [00:00<?, ?it/s]Loading weights:   0%|          | 2/750 [00:00<01:08, 10.92it/s]Loading weights:   4%|▎         | 28/750 [00:00<00:06, 113.55it/s]Loading weights:   9%|▉         | 68/750 [00:00<00:03, 219.21it/s]Loading weights:  14%|█▎        | 103/750 [00:00<00:02, 261.62it/s]Loading weights:  18%|█▊        | 138/750 [00:00<00:02, 287.32it/s]Loading weights:  24%|██▍       | 180/750 [00:00<00:01, 322.08it/s]Loading weights:  29%|██▊       | 214/750 [00:00<00:01, 316.34it/s]Loading weights:  34%|███▎      | 252/750 [00:00<00:01, 333.69it/s]Loading weights:  38%|███▊      | 287/750 [00:01<00:01, 335.80it/s]Loading weights:  43%|████▎     | 322/750 [00:01<00:01, 311.94it/s]Loading weights:  48%|████▊     | 358/750 [00:01<00:01, 296.46it/s]Loading weights:  68%|██████▊   | 509/750 [00:01<00:00, 620.22it/s]Loading weights: 100%|██████████| 750/750 [00:01<00:00, 507.93it/s]
+  [20/200] 0.59 it/s  eta 5 min
+  [40/200] 0.60 it/s  eta 4 min
+  [60/200] 0.61 it/s  eta 4 min
+  [80/200] 0.61 it/s  eta 3 min
+  [100/200] 0.61 it/s  eta 3 min
+  [120/200] 0.61 it/s  eta 2 min
+  [140/200] 0.61 it/s  eta 2 min
+  [160/200] 0.61 it/s  eta 1 min
+  [180/200] 0.61 it/s  eta 1 min
+  [200/200] 0.61 it/s  eta 0 min
+[gen] 新增 200 条 → sft_data_v2/diag_wbA50/predictions.jsonl
+[score] 200 条预测
+  [50/200] 3.0 it/s  eta 1 min
+  [100/200] 3.1 it/s  eta 1 min
+  [150/200] 3.3 it/s  eta 0 min
+  [200/200] 3.4 it/s  eta 0 min
+
+===== 分 stage 图像空间诊断 =====
+stage       n   解析失败   键异常 L_pred p50 L_noop p50    改善中位   改善p10
+light      50      0     0      2.114      2.145  -0.187  -1.571
+         参数MAE: {'exposure': 0.41, 'temperature': 444.2, 'tint': 6.52}
+tone       50      0     0      2.038      2.353  -0.039  -0.824
+         参数MAE: {'blacks': 5.96, 'contrast': 3.74, 'dehaze': 5.57, 'highlights': 9.89, 'shadows': 10.66, 'tone_curve': 3.91, 'whites': 1.82}
+color      50      0     0      4.587       5.44   0.039  -0.774
+         参数MAE: {'color_grading': 3.22, 'color_mixer': 9.55, 'saturation': 8.86, 'vibrance': 7.78}
+detail     50      0     0      1.583       0.85  -0.277  -8.228
+         参数MAE: {'clarity': 26.43, 'noise_reduction': 0.09, 'sharpen': 4.76, 'texture': 22.6, 'vignette': 29.68}
+黑白子集  n=40  改善中位=0.43
+
+[score] 明细 scores.jsonl / 汇总 report.json → sft_data_v2/diag_wbA50/
+读法：改善中位 = 1 − L_pred/L_noop，越接近 1 该 stage 学得越好；≈0 表示不比全零好；哪个 stage 显著落后再考虑拆分它。

@@ -37,6 +37,13 @@ defaults, so drop any flag you don't need to override:
         --micro_fit_iters 200 \
         --n_restarts 2 \
         --device cuda
+        
+    python -m differentiable_renderer.fit \
+    --data_dir try_new_dataset1/train \
+    --output_dir fit_results \
+    --amortized_init amortized_init.pt \
+    --all_versions \
+    --device cuda
 
 ``--all_versions`` fits every ``version_*`` subdir of each sample; results mirror
 the dataset layout — ``{output_dir}/{sample_id}/version_{n}/`` with one
@@ -1387,11 +1394,13 @@ def fit_and_save(args, amortized_model, sid: str, version: int):
     edited_pil = Image.open(edited_path).convert('RGB')
     force_align = not args.no_force_align
     aspect_diff = needs_crop(orig_pil.size, edited_pil.size)
+    align_info = None
     if force_align or aspect_diff:
-        orig_source = align_original_to_edited(
-            orig_path, edited_path, force_sift=force_align)
+        orig_source, align_info = align_original_to_edited(
+            orig_path, edited_path, force_sift=force_align, return_info=True)
         crop_aligned_flag = True
-        print(f"  Crop aligned ({'forced SIFT' if force_align else 'aspect-gated'}): "
+        print(f"  Crop aligned ({'forced SIFT' if force_align else 'aspect-gated'}, "
+              f"method={align_info['method']}, box={align_info['box']}): "
               f"{orig_pil.size} → {orig_source.size} (target {edited_pil.size})")
     else:
         orig_source = orig_path
@@ -1421,6 +1430,18 @@ def fit_and_save(args, amortized_model, sid: str, version: int):
     params['_crop_aligned'] = crop_aligned_flag
     with open(param_file, 'w', encoding='utf-8') as f:
         json.dump(params, f, ensure_ascii=False, indent=2)
+
+    # 持久化拟合实际使用的对齐输入（2026-07-13 教训：几何必须可复现，事后 SIFT
+    # 重估在弱纹理样本上不稳定）。resize_only 表示输入与组原图内容一致（仅缩放），
+    # 训练端回退组级 original_captured_cropped.png 即等价，不落盘省磁盘；真裁剪
+    # （sift / center_fallback）则写 original_cropped.png——训练与一致性扫描按约定
+    # 优先读它，输入几何与拟合严格一致（按构造成立，不再依赖任何估计）。
+    aligned_input_saved = False
+    if (not args.no_save_aligned_input and align_info is not None
+            and align_info['method'] != 'resize_only'
+            and isinstance(orig_source, Image.Image)):
+        orig_source.save(os.path.join(result_dir, 'original_cropped.png'))
+        aligned_input_saved = True
 
     with torch.no_grad():
         orig_full   = load_image(orig_source).to(args.device)
@@ -1458,6 +1479,13 @@ def fit_and_save(args, amortized_model, sid: str, version: int):
         'n_active_params': n_active,
         'bw_mode': bool(getattr(renderer, 'bw_mode', False)),
         'crop_aligned': crop_aligned_flag,
+        # 对齐几何全记录（有 crop_box 即为新版拟合，make_refit_list.py 以此判断已重拟合）
+        'crop_method': align_info['method'] if align_info else 'none',
+        'crop_box': align_info['box'] if align_info else None,
+        'align_coverage': align_info['coverage'] if align_info else None,
+        'orig_size': align_info['orig_size'] if align_info else None,
+        'target_size': align_info['target_size'] if align_info else None,
+        'aligned_input_saved': aligned_input_saved,
         'degenerate': degenerate,
         'loss_components': {k: round(float(v), 4) for k, v in final_log.items()},
         'fit_seconds': round(elapsed, 1),
@@ -1536,6 +1564,15 @@ def main():
                         'images (by default we always run SIFT alignment for '
                         'sub-pixel content matching, which materially affects '
                         'lab_ab / ms_ssim losses)')
+    p.add_argument('--only', default=None,
+                   help='清单文件：每行 "<sample_id>:<version>"（或裸 "<sample_id>"，'
+                        '此时按 --version/--all_versions 决定版本）。只拟合列出的对，'
+                        '用于定向重拟合；配合 --force 覆盖旧产出。'
+                        '清单由 5_training/make_refit_list.py 生成。')
+    p.add_argument('--no_save_aligned_input', action='store_true',
+                   help='不把拟合实际使用的对齐原图写入 '
+                        '{output_dir}/{sid}/version_N/original_cropped.png'
+                        '（默认写入：训练/扫描按约定优先读它，几何按构造一致）')
     args = p.parse_args()
     # Treat negative threshold as "disabled" so user can opt out via CLI.
     if args.skip_scale_threshold is not None and args.skip_scale_threshold < 0:
@@ -1549,7 +1586,24 @@ def main():
 
     os.makedirs(args.output_dir, exist_ok=True)
 
-    if args.sample_id:
+    only_map = None
+    if args.only:
+        only_map = {}
+        with open(args.only, encoding='utf-8') as f:
+            for line in f:
+                line = line.strip()
+                if not line or line.startswith('#'):
+                    continue
+                sid, _, v = line.partition(':')
+                only_map.setdefault(sid, set())
+                if v != '':
+                    only_map[sid].add(int(v))
+        sample_ids = sorted(only_map)
+        if args.limit is not None:
+            sample_ids = sample_ids[:args.limit]
+        n_pairs = sum(len(v) for v in only_map.values())
+        print(f"--only 清单: {len(sample_ids)} 个样本 / {n_pairs} 个指定 version")
+    elif args.sample_id:
         sample_ids = [args.sample_id]
     else:
         sample_ids = sorted(d for d in os.listdir(args.data_dir)
@@ -1565,8 +1619,10 @@ def main():
           f"restarts {args.n_restarts}")
 
     for idx, sid in enumerate(sample_ids):
-        # 决定本样本要拟合哪些 version
-        if args.all_versions:
+        # 决定本样本要拟合哪些 version（--only 带 version 的行优先）
+        if only_map is not None and only_map.get(sid):
+            versions = sorted(only_map[sid])
+        elif args.all_versions:
             versions = discover_versions(args.data_dir, sid)
             if not versions:
                 print(f"[{idx + 1}/{total}] SKIP {sid[:24]}…  (无 version_* 子目录)")

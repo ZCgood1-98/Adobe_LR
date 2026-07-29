@@ -1,0 +1,22 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 7194.35it/s]
+Loading weights:   0%|          | 0/750 [00:00<?, ?it/s]Loading weights:   0%|          | 2/750 [00:00<01:10, 10.58it/s]Loading weights:   5%|▍         | 34/750 [00:00<00:05, 134.36it/s]Loading weights:  10%|▉         | 72/750 [00:00<00:03, 222.30it/s]Loading weights:  15%|█▍        | 111/750 [00:00<00:02, 258.58it/s]Loading weights:  20%|█▉        | 147/750 [00:00<00:02, 279.06it/s]Loading weights:  25%|██▌       | 189/750 [00:00<00:01, 313.85it/s]Loading weights:  31%|███▏      | 235/750 [00:00<00:01, 307.36it/s]Loading weights:  38%|███▊      | 285/750 [00:01<00:01, 357.90it/s]Loading weights:  43%|████▎     | 323/750 [00:01<00:01, 336.77it/s]Loading weights:  48%|████▊     | 358/750 [00:01<00:01, 338.87it/s]Loading weights:  53%|█████▎    | 395/750 [00:01<00:01, 344.83it/s]Loading weights:  97%|█████████▋| 730/750 [00:01<00:00, 1183.47it/s]Loading weights: 100%|██████████| 750/750 [00:01<00:00, 514.31it/s] 
+[chain] 7474 链单元；可训 89.3M；N=8 lr=4e-06 steps=60 kl=0.05
+[eval step 0] 全链改善 中位 -0.127 均 -0.896 >0比例 46%
+  step    1 链改善中位 -0.203 组内std 3.63 KL均 0.027 grad_norm 61.18 更新 32 (95.1s/step)
+  step    5 链改善中位 -4.505 组内std 6.46 KL均 0.034 grad_norm 71.04 更新 32 (95.1s/step)
+  step   10 链改善中位 -0.578 组内std 3.92 KL均 0.040 grad_norm 68.75 更新 32 (97.8s/step)
+  step   15 链改善中位 -0.920 组内std 4.44 KL均 0.057 grad_norm 70.09 更新 32 (97.5s/step)
+  step   20 链改善中位 -0.926 组内std 4.14 KL均 0.073 grad_norm 70.29 更新 32 (97.8s/step)
+[eval step 20] 全链改善 中位 +0.039 均 -0.917 >0比例 58%
+  step   25 链改善中位 -2.231 组内std 4.18 KL均 0.090 grad_norm 79.05 更新 32 (106.0s/step)
+  step   30 链改善中位 -0.517 组内std 2.66 KL均 0.085 grad_norm 65.10 更新 32 (104.7s/step)
+  step   35 链改善中位 -0.360 组内std 5.56 KL均 0.103 grad_norm 81.07 更新 32 (103.2s/step)
+  step   40 链改善中位 -0.390 组内std 2.83 KL均 0.143 grad_norm 86.64 更新 32 (102.8s/step)
+[eval step 40] 全链改善 中位 +0.088 均 -0.920 >0比例 54%
+  step   45 链改善中位 -0.222 组内std 4.12 KL均 0.102 grad_norm 66.55 更新 32 (106.0s/step)
+  step   50 链改善中位 -0.293 组内std 1.22 KL均 0.138 grad_norm 73.84 更新 32 (104.6s/step)
+  step   55 链改善中位 -1.027 组内std 3.05 KL均 0.207 grad_norm 67.09 更新 32 (103.7s/step)
+  step   60 链改善中位 -0.644 组内std 1.24 KL均 0.219 grad_norm 69.90 更新 32 (102.9s/step)
+[eval step 60] 全链改善 中位 +0.088 均 -0.651 >0比例 58%
+[chain] done 106.2min → 5_training/output/grpo_chain2

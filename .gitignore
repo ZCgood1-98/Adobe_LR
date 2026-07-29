@@ -1,0 +1,48 @@
+# ===== 环境 / 密钥 =====
+.env
+.claude/settings.local.json
+
+# ===== Python 缓存 =====
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# ===== 原始数据 / 模型权重（体积大，不入库）=====
+scraped_data_v4/
+scraped_data_v4.zip
+all_combined_details.json
+amortized_init.pt
+*.pt
+
+# ===== 产出目录（脚本生成，不入库）=====
+sft_data/
+eval_results/
+eval_results_test/
+fit_results_demo/
+fit_results_crop_test/
+aesthetic_output/
+fit_results/
+differentiable_renderer/fit_results/
+differentiable_renderer/test_output/
+differentiable_renderer/test_output_warm/
+
+# ===== 人工筛选结果（大体积数据子集）=====
+Ziyiwang_filter/
+try_new_dataset1/
+simeng_chen/
+
+# ===== 训练产出 / 大体积数据集（脚本可重建，不入库）=====
+# 5_training/output/ = LoRA adapter 与 checkpoint（28G）
+# sft_data_v2/       = 构建器产出的数据集与图（14G）；结果 JSON 已归档到 5_training/analysis/results/
+5_training/output/
+sft_data_v2/
+
+# ===== 运行日志 =====
+# 例外：5_training/analysis/logs/ 是 GRPO 各轮训练/诊断的研究记录，入库
+*.log
+pipeline.log
+!5_training/analysis/logs/*.log
+
+# ===== 密钥配置（勿提交）=====
+5_training/openrouter_config.json

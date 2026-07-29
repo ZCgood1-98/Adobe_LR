@@ -1,0 +1,33 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 18935.91it/s]
+Loading weights:   0%|          | 0/750 [00:00<?, ?it/s]Loading weights:   0%|          | 1/750 [00:00<04:40,  2.67it/s]Loading weights:   0%|          | 2/750 [00:00<05:31,  2.26it/s]Loading weights:   2%|▏         | 12/750 [00:00<00:41, 17.83it/s]Loading weights:   2%|▏         | 17/750 [00:01<00:31, 23.21it/s]Loading weights:   4%|▎         | 27/750 [00:01<00:18, 38.83it/s]Loading weights:   5%|▍         | 37/750 [00:01<00:13, 52.46it/s]Loading weights:   6%|▌         | 46/750 [00:01<00:11, 61.45it/s]Loading weights:   7%|▋         | 55/750 [00:01<00:10, 64.99it/s]Loading weights:   8%|▊         | 63/750 [00:01<00:10, 63.58it/s]Loading weights:   9%|▉         | 71/750 [00:01<00:10, 67.39it/s]Loading weights:  11%|█         | 81/750 [00:01<00:09, 74.30it/s]Loading weights:  12%|█▏        | 89/750 [00:01<00:08, 73.53it/s]Loading weights:  13%|█▎        | 97/750 [00:02<00:09, 69.94it/s]Loading weights:  14%|█▍        | 105/750 [00:02<00:11, 58.53it/s]Loading weights:  15%|█▌        | 115/750 [00:02<00:09, 67.48it/s]Loading weights:  17%|█▋        | 125/750 [00:02<00:08, 73.80it/s]Loading weights:  18%|█▊        | 133/750 [00:02<00:08, 73.60it/s]Loading weights:  19%|█▉        | 141/750 [00:02<00:08, 71.61it/s]Loading weights:  20%|█▉        | 149/750 [00:02<00:08, 69.13it/s]Loading weights:  21%|██        | 159/750 [00:02<00:07, 74.23it/s]Loading weights:  23%|██▎       | 169/750 [00:03<00:07, 76.62it/s]Loading weights:  24%|██▎       | 177/750 [00:03<00:07, 74.78it/s]Loading weights:  25%|██▍       | 185/750 [00:03<00:07, 71.94it/s]Loading weights:  26%|██▌       | 193/750 [00:03<00:08, 69.10it/s]Loading weights:  27%|██▋       | 204/750 [00:03<00:07, 73.79it/s]Loading weights:  29%|██▊       | 215/750 [00:03<00:06, 77.73it/s]Loading weights:  30%|███       | 226/750 [00:03<00:06, 81.03it/s]Loading weights:  32%|███▏      | 237/750 [00:03<00:06, 82.36it/s]Loading weights:  34%|███▎      | 252/750 [00:04<00:05, 96.89it/s]Loading weights:  35%|███▍      | 262/750 [00:04<00:05, 92.20it/s]Loading weights:  36%|███▋      | 272/750 [00:04<00:05, 88.65it/s]Loading weights:  37%|███▋      | 281/750 [00:04<00:05, 82.53it/s]Loading weights:  39%|███▉      | 291/750 [00:04<00:05, 84.37it/s]Loading weights:  40%|████      | 300/750 [00:04<00:05, 82.89it/s]Loading weights:  41%|████      | 309/750 [00:04<00:06, 71.84it/s]Loading weights:  42%|████▏     | 317/750 [00:04<00:06, 68.24it/s]Loading weights:  43%|████▎     | 325/750 [00:05<00:08, 50.29it/s]Loading weights:  45%|████▍     | 335/750 [00:05<00:07, 56.18it/s]Loading weights:  46%|████▌     | 345/750 [00:05<00:08, 50.19it/s]Loading weights:  47%|████▋     | 351/750 [00:05<00:09, 43.76it/s]Loading weights:  48%|████▊     | 358/750 [00:05<00:08, 45.61it/s]Loading weights:  49%|████▉     | 367/750 [00:06<00:07, 51.23it/s]Loading weights:  50%|█████     | 378/750 [00:06<00:06, 55.26it/s]Loading weights:  51%|█████     | 384/750 [00:06<00:07, 48.24it/s]Loading weights:  52%|█████▏    | 391/750 [00:06<00:07, 48.90it/s]Loading weights:  59%|█████▉    | 443/750 [00:06<00:02, 147.45it/s]Loading weights:  71%|███████   | 533/750 [00:06<00:00, 320.53it/s]Loading weights:  82%|████████▏ | 618/750 [00:06<00:00, 451.42it/s]Loading weights:  94%|█████████▍| 704/750 [00:06<00:00, 555.78it/s]Loading weights: 100%|██████████| 750/750 [00:07<00:00, 104.51it/s]
+[grpo] 29896 prompts；可训参数 89.3M；N=8 lr=4e-06 steps=150
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[eval step 0] greedy均 -13.984 | light:-9.64 tone:-12.99 color:-28.14 detail:-5.16
+  step    1 reward均 -8.706 |adv|均 0.776 KL均 0.017 grad_norm 54.08 rollouts 16 (31.3s/step)
+  step   10 reward均 -16.692 |adv|均 0.869 KL均 0.179 grad_norm 59.86 rollouts 16 (37.3s/step)
+[eval step 15] greedy均 -13.488 | light:-9.70 tone:-10.39 color:-28.92 detail:-4.94
+  step   20 reward均 -15.994 |adv|均 0.770 KL均 0.265 grad_norm 75.83 rollouts 16 (42.0s/step)
+  step   30 reward均 -20.220 |adv|均 0.857 KL均 0.564 grad_norm 31.56 rollouts 16 (41.6s/step)
+[eval step 30] greedy均 -12.643 | light:-9.63 tone:-10.27 color:-25.51 detail:-5.17
+  step   40 reward均 -20.198 |adv|均 0.764 KL均 3.082 grad_norm 127.70 rollouts 16 (43.1s/step)
+[eval step 45] greedy均 -12.197 | light:-9.65 tone:-10.10 color:-24.39 detail:-4.64
+  step   50 reward均 -33.572 |adv|均 0.765 KL均 3.916 grad_norm 123.01 rollouts 16 (45.0s/step)
+  step   60 reward均 -21.225 |adv|均 0.807 KL均 4.770 grad_norm 163.16 rollouts 16 (44.4s/step)
+[eval step 60] greedy均 -12.790 | light:-9.65 tone:-10.42 color:-25.90 detail:-5.19
+  step   70 reward均 -5.605 |adv|均 0.862 KL均 0.962 grad_norm 54.80 rollouts 16 (44.9s/step)
+[eval step 75] greedy均 -11.789 | light:-9.58 tone:-10.08 color:-22.37 detail:-5.13
+  step   80 reward均 -4.256 |adv|均 0.812 KL均 1.478 grad_norm 86.20 rollouts 16 (45.2s/step)
+  step   90 reward均 -42.252 |adv|均 0.779 KL均 7.172 grad_norm 126.39 rollouts 16 (45.3s/step)
+[eval step 90] greedy均 -11.541 | light:-9.58 tone:-10.05 color:-21.36 detail:-5.17
+  step  100 reward均 -15.948 |adv|均 0.893 KL均 3.218 grad_norm 54.32 rollouts 16 (45.3s/step)
+[eval step 105] greedy均 -11.289 | light:-9.60 tone:-10.09 color:-20.29 detail:-5.18
+  step  110 reward均 -32.609 |adv|均 0.824 KL均 13.750 grad_norm 166.48 rollouts 16 (46.2s/step)
+  step  120 reward均 -26.486 |adv|均 0.792 KL均 3.498 grad_norm 144.09 rollouts 16 (46.6s/step)
+[eval step 120] greedy均 -11.221 | light:-9.58 tone:-10.08 color:-20.15 detail:-5.07
+  step  130 reward均 -6.521 |adv|均 0.870 KL均 8.582 grad_norm 87.52 rollouts 16 (46.0s/step)
+[eval step 135] greedy均 -11.475 | light:-9.60 tone:-10.09 color:-21.21 detail:-4.99
+  step  140 reward均 -12.283 |adv|均 0.770 KL均 12.059 grad_norm 120.62 rollouts 16 (46.1s/step)
+  step  150 reward均 -14.866 |adv|均 0.765 KL均 3.961 grad_norm 87.48 rollouts 16 (45.7s/step)
+[eval step 150] greedy均 -11.477 | light:-9.72 tone:-10.14 color:-21.06 detail:-5.00
+[grpo] done 115.0min → 5_training/output/grpo_explore2

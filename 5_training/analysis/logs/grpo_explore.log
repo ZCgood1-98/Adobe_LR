@@ -1,0 +1,33 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 1565.62it/s]
+Loading weights:   0%|          | 0/750 [00:00<?, ?it/s]Loading weights:   0%|          | 2/750 [00:00<01:05, 11.50it/s]Loading weights:   3%|▎         | 26/750 [00:00<00:06, 105.46it/s]Loading weights:  10%|█         | 75/750 [00:00<00:02, 226.80it/s]Loading weights:  16%|█▋        | 122/750 [00:00<00:02, 296.37it/s]Loading weights:  21%|██        | 159/750 [00:00<00:01, 314.59it/s]Loading weights:  26%|██▌       | 192/750 [00:00<00:01, 316.51it/s]Loading weights:  31%|███▏      | 235/750 [00:00<00:01, 346.90it/s]Loading weights:  36%|███▌      | 271/750 [00:00<00:01, 337.72it/s]Loading weights:  41%|████      | 306/750 [00:01<00:01, 337.04it/s]Loading weights:  46%|████▌     | 345/750 [00:01<00:01, 346.43it/s]Loading weights:  51%|█████     | 380/750 [00:01<00:01, 301.30it/s]Loading weights:  98%|█████████▊| 733/750 [00:01<00:00, 1133.15it/s]Loading weights: 100%|██████████| 750/750 [00:01<00:00, 525.71it/s] 
+[grpo] 29896 prompts；可训参数 89.3M；N=8 lr=4e-06 steps=150
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[eval step 0] greedy均 -13.984 | light:-9.64 tone:-12.99 color:-28.14 detail:-5.16
+  step    1 reward均 -8.945 |adv|均 0.775 KL均 0.016 grad_norm 44.87 rollouts 16 (29.4s/step)
+  step   10 reward均 -16.640 |adv|均 0.865 KL均 0.170 grad_norm 52.23 rollouts 16 (35.7s/step)
+[eval step 15] greedy均 -12.497 | light:-9.64 tone:-10.52 color:-25.28 detail:-4.55
+  step   20 reward均 -13.641 |adv|均 0.828 KL均 0.275 grad_norm 75.41 rollouts 16 (40.1s/step)
+  step   30 reward均 -18.952 |adv|均 0.870 KL均 0.375 grad_norm 26.48 rollouts 16 (40.1s/step)
+[eval step 30] greedy均 -11.917 | light:-9.65 tone:-10.21 color:-22.64 detail:-5.17
+  step   40 reward均 -19.008 |adv|均 0.773 KL均 2.050 grad_norm 120.10 rollouts 16 (41.6s/step)
+[eval step 45] greedy均 -12.876 | light:-9.58 tone:-10.49 color:-26.27 detail:-5.17
+  step   50 reward均 -33.328 |adv|均 0.766 KL均 3.646 grad_norm 122.34 rollouts 16 (43.3s/step)
+  step   60 reward均 -21.273 |adv|均 0.808 KL均 5.168 grad_norm 162.75 rollouts 16 (42.9s/step)
+[eval step 60] greedy均 -12.129 | light:-9.63 tone:-10.11 color:-24.02 detail:-4.77
+  step   70 reward均 -5.639 |adv|均 0.857 KL均 0.933 grad_norm 47.44 rollouts 16 (43.3s/step)
+[eval step 75] greedy均 -11.499 | light:-9.58 tone:-10.41 color:-21.05 detail:-4.96
+  step   80 reward均 -4.261 |adv|均 0.814 KL均 1.600 grad_norm 73.52 rollouts 16 (43.7s/step)
+  step   90 reward均 -41.975 |adv|均 0.804 KL均 6.020 grad_norm 127.45 rollouts 16 (43.8s/step)
+[eval step 90] greedy均 -11.212 | light:-9.60 tone:-10.42 color:-20.02 detail:-4.81
+  step  100 reward均 -16.874 |adv|均 0.888 KL均 2.985 grad_norm 49.38 rollouts 16 (43.8s/step)
+[eval step 105] greedy均 -11.877 | light:-9.65 tone:-10.07 color:-22.77 detail:-5.01
+  step  110 reward均 -34.310 |adv|均 0.821 KL均 14.928 grad_norm 168.05 rollouts 16 (44.8s/step)
+  step  120 reward均 -26.356 |adv|均 0.794 KL均 3.402 grad_norm 151.10 rollouts 16 (45.1s/step)
+[eval step 120] greedy均 -12.023 | light:-9.65 tone:-10.04 color:-23.26 detail:-5.14
+  step  130 reward均 -6.790 |adv|均 0.920 KL均 9.777 grad_norm 85.06 rollouts 16 (44.5s/step)
+[eval step 135] greedy均 -12.026 | light:-9.76 tone:-10.05 color:-23.25 detail:-5.04
+  step  140 reward均 -12.323 |adv|均 0.766 KL均 14.296 grad_norm 119.46 rollouts 16 (44.6s/step)
+  step  150 reward均 -14.857 |adv|均 0.764 KL均 4.334 grad_norm 84.71 rollouts 16 (44.3s/step)
+[eval step 150] greedy均 -13.040 | light:-9.66 tone:-10.09 color:-27.24 detail:-5.17
+[grpo] done 111.4min → 5_training/output/grpo_explore

@@ -1,0 +1,10 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 3856.83it/s]
+Loading weights:   0%|          | 0/750 [00:00<?, ?it/s]Loading weights:   0%|          | 2/750 [00:00<01:07, 11.01it/s]Loading weights:   4%|▍         | 33/750 [00:00<00:05, 120.64it/s]Loading weights:  11%|█         | 82/750 [00:00<00:02, 236.44it/s]Loading weights:  17%|█▋        | 126/750 [00:00<00:02, 269.01it/s]Loading weights:  23%|██▎       | 174/750 [00:00<00:01, 313.53it/s]Loading weights:  30%|██▉       | 222/750 [00:00<00:01, 360.22it/s]Loading weights:  35%|███▍      | 261/750 [00:00<00:01, 347.69it/s]Loading weights:  40%|███▉      | 298/750 [00:01<00:01, 334.89it/s]Loading weights:  44%|████▍     | 333/750 [00:01<00:01, 331.67it/s]Loading weights:  49%|████▉     | 371/750 [00:01<00:01, 342.66it/s]Loading weights:  71%|███████▏  | 535/750 [00:01<00:00, 707.70it/s]Loading weights: 100%|██████████| 750/750 [00:01<00:00, 528.69it/s]
+[grpo] 29896 prompts；可训参数 89.3M；N=4 lr=2e-06 steps=3
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[eval step 0] greedy均 -8.732 | light:-6.86 tone:-8.48 color:-14.68 detail:-4.91
+  step    1 reward均 -11.102 |adv|均 0.864 KL均 0.002 grad_norm 52.54 rollouts 4 (7.4s/step)
+  step    2 reward均 -4.473 |adv|均 0.933 KL均 0.035 grad_norm 124.84 rollouts 4 (7.4s/step)
+  step    3 reward均 -12.918 |adv|均 0.929 KL均 0.005 grad_norm 81.45 rollouts 4 (6.6s/step)
+[grpo] done 0.3min → /home/chen/Work/adobe_lr/5_training/output/grpo_v1

@@ -1,0 +1,57 @@
+# 线5 · Phase 2 SFT：Qwen3-VL-8B-Instruct + LoRA（任务A 逐维直出）
+# 用法（仓库根目录）：bash 5_training/train_sft.sh
+# 显存参考：RTX 5000 Ada 32GB，bf16 LoRA + grad ckpt 可跑；若 OOM 再开 quantization_bit: 4
+
+### 模型
+model_name_or_path: Qwen/Qwen3-VL-8B-Instruct
+image_max_pixels: 1048576   # ≈1024×1024，与数据构建的 max_side=1024 匹配
+image_min_pixels: 65536
+trust_remote_code: true
+
+### 方法
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_rank: 32
+lora_alpha: 64
+lora_dropout: 0.05
+lora_target: all
+freeze_vision_tower: true            # 冻结 ViT：数据 3 万级，先只调 LLM+投影层
+freeze_multi_modal_projector: false
+# quantization_bit: 4                # OOM 兜底：解开注释走 QLoRA
+
+### 数据
+dataset_dir: sft_data_v2
+media_dir: sft_data_v2
+dataset: photo_edit_sft_train
+eval_dataset: photo_edit_sft_val
+template: qwen3_vl_nothink
+cutoff_len: 3072
+preprocessing_num_workers: 8
+dataloader_num_workers: 2
+
+### 输出
+output_dir: 5_training/output/sft_v1
+logging_steps: 10
+save_steps: 200
+save_total_limit: 3
+plot_loss: true
+overwrite_output_dir: false
+report_to: none
+
+### 训练
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 16      # 有效 batch 16
+learning_rate: 1.0e-4
+num_train_epochs: 2.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.05
+bf16: true
+gradient_checkpointing: true
+flash_attn: sdpa                     # Ada 上不编译 flash-attn，SDPA 足够
+seed: 42
+
+### 评估
+per_device_eval_batch_size: 1
+eval_strategy: steps
+eval_steps: 200
