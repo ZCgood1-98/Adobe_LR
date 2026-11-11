@@ -6,12 +6,14 @@
 每张图流程：
   1. 智能体 doc_open 原图 → 查看 → command_run filter.cameraRaw（一次给全参数）
   2. render_preview 看结果；要改就先 history.undo 回原图，再整组重下（不叠加），最多 MAX_ROUNDS 轮
-  3. 最后一条消息输出 {"params": {...}, "rationale": "..."}
+  3. 最后一条消息：不超过 3 句理由 + 末行 {"params": {...}}（与 C 类格式一致）
   4. 本脚本用「原图 + 最终参数」经 photocraft-cli run 确定性重渲染 → 成品 jpg(q95)，
      所以成品可复现，且不受智能体中途叠加/误操作影响
 
-输出（与 run_a.py 一致）：runs/A/PhotoCraft_<模型>/<split>/<uuid>.jpg
-旁路：runs/A/PhotoCraft_<模型>/_meta/<split>/<uuid>/{params.json, transcript.jsonl, audit.json, stderr.txt}
+提示词与 benchmark 对齐：审美目标 GOAL 与 B/C 类逐字一致，系统段照 C 类 SYS；保留看预览的反馈（C 类也有反馈）。
+
+输出（与 run_a.py 一致）：runs/A/PhotoCraft-<提示词版本>_<模型>/<split>/<uuid>.jpg
+旁路：.../_meta/<split>/<uuid>/{params.json, transcript.jsonl, audit.json, stderr.txt}；.../_meta/prompt.txt
 
 用法：
   python run_agent.py --agent claude --model claude-haiku-5-5 --split test --n 10
@@ -38,31 +40,59 @@ MAX_ROUNDS = 5
 ALLOWED_TOOLS = ['doc_open', 'command_run', 'render_preview', 'doc_inspect']
 ALLOWED_CMDS = {'filter.cameraRaw', 'history.undo', 'history.redo', 'edit.undo', 'file.revert'}
 
-PROMPT = """You are a professional photo retoucher. Use the `photocraft` MCP tools to globally enhance ONE photo so it looks like a polished, natural edit by an expert (good exposure, pleasing white balance, balanced contrast and color). Keep it realistic; do not apply heavy stylization.
+# —— 与 benchmark 对齐 ——
+# GOAL 逐字等于 7_baselines/smoke/run_bc.py 的 GOAL（= B_PROMPT 前两句 + 内容保持句），B/C/本基线三者审美目标一致。
+# 系统段照搬 C 类 SYS 的结构，只把「自研渲染器」换成 PhotoCraft 的说明；参数说明按 measure_dirs.py 实测写。
+# 与 C 类的唯一机制差异：反馈方式（C=九宫格选候选；本基线=自己看预览、可撤销重来）。
+GOAL = ("Retouch this photograph like a professional photo editor working in Lightroom. "
+        "Improve its overall aesthetic quality using only global photographic adjustments "
+        "(exposure, contrast, highlights/shadows, white balance, color and saturation, clarity). "
+        "Do NOT change the content, composition or framing.")
+PROTO = 'p2'  # 提示词版本；改 PROMPT 必须改它（输出目录随之更换，避免新旧结果混用）
 
-Workflow (follow exactly):
-1. Call doc_open with path "{name}". Then call render_preview (max_side 768) to look at the original.
-2. Decide a full set of RAW Develop settings and apply them in ONE call:
-   command_run with id "filter.cameraRaw" and params = your settings.
-3. After that command_run has returned (never in the same turn / never in parallel), call render_preview (max_side 768) to inspect the result.
-4. If it needs changes: FIRST call command_run with id "history.undo" (so the filter is never stacked), then apply a complete new settings set with filter.cameraRaw, then preview again. At most {rounds} filter.cameraRaw attempts in total.
-5. Stop when satisfied. Only use the commands filter.cameraRaw and history.undo. Do not use any other command (no selections, masks, auto or AI features).
+PROMPT = """You are a professional photo editor.
+Goal: """ + GOAL + """
+How you work: you do not edit pixels yourself. You choose values for the global parameters of the PhotoCraft RAW Develop filter (Camera Raw-style sliders applied to an already-rendered photo; it is not Lightroom, and the exact direction and strength of every parameter are documented below), and the filter applies them to the whole photo. No masks, no cropping. 0 or an omitted parameter means no change.
 
-filter.cameraRaw params (Adobe Camera Raw slider units, camelCase, omit = 0):
-- exposure: -5..5 (stops)
-- temperature, tint: -100..100 (relative white balance; + = warmer / more magenta)
-- contrast, highlights, shadows, whites, blacks: -100..100
-- texture, clarity, dehaze: -100..100
-- vibrance, saturation: -100..100
-- curveHighlights, curveLights, curveDarks, curveShadows: -100..100 (parametric tone curve)
-- hslHue, hslSat, hslLum: arrays of 8 numbers in -100..100 for [red, orange, yellow, green, aqua, blue, purple, magenta]
-- gradeShadows, gradeMidtones, gradeHighlights: objects {{"hue": 0..360, "sat": 0..100, "lum": -100..100}}
-- vignetteAmount: -100..100
-- sharpenAmount: 0..150
+You work through the `photocraft` MCP tools:
+1. Call doc_open with path "{name}", then render_preview (max_side 768) to see the original photo.
+2. Apply ONE complete set of settings: command_run with id "filter.cameraRaw" and params = your settings.
+3. After that command_run has returned (never in parallel with it), call render_preview (max_side 768) and judge the result against the goal by eye.
+4. To try different settings, FIRST call command_run with id "history.undo" (the filter must never be stacked; undo returns to the original), then apply a complete new set and preview again. At most {rounds} filter.cameraRaw attempts in total. If no setting improves the photo, undo and finish with an empty params object.
+5. Use only the commands filter.cameraRaw and history.undo; no other commands.
 
-Your FINAL message must end with exactly one JSON object on its own line, containing the settings of your last applied filter.cameraRaw call:
-{{"params": {{...}}, "rationale": "<one sentence>"}}
-"""
+Controls of filter.cameraRaw (camelCase keys; measured behaviour of this filter):
+- "exposure": -5..5 stops; +1 doubles linear light (mid-grey 128 -> 176), -1 halves it (128 -> 92).
+- "temperature": -100..100 relative white balance; + warmer (more red, less blue), - cooler.
+- "tint": -100..100; + more magenta (less green), - greener.
+- "contrast": -100..100; pivots around mid-grey (mid-grey stays put, darker tones darker and lighter tones lighter for +).
+- "highlights", "shadows": -100..100; - darkens / + brightens mainly the bright resp. dark tones (use -highlights to recover bright areas, +shadows to open dark areas).
+- "whites", "blacks": -100..100; move the white / black end of the tone range (+whites brightens the upper range, -blacks deepens the lower range).
+- "texture", "clarity", "dehaze": -100..100; local contrast at fine / medium scale and haze removal (+ crisper, - softer).
+- "vibrance": -100..100; saturation boost weighted toward less-saturated colours, gentler on skin.
+- "saturation": -100..100; uniform; -100 = fully greyscale, -50 = half saturation, +50 is already strong.
+- "curveHighlights", "curveLights", "curveDarks", "curveShadows": -100..100 parametric tone curve regions (+ brightens that region).
+- "hslHue", "hslSat", "hslLum": arrays of 8 numbers in -100..100 for [red, orange, yellow, green, aqua, blue, purple, magenta]. Hue + rotates each colour toward the next one in that list (red -> orange, green -> aqua, blue -> purple). Sat - desaturates that colour only; Lum - darkens it.
+- "gradeShadows", "gradeMidtones", "gradeHighlights": {{"hue": 0..360, "sat": 0..100, "lum": -100..100}} colour tint added to that tonal range (hue in degrees: 0 red, 120 green, 220 blue).
+- "vignetteAmount": -100..100; - darkens the corners, + lightens them.
+- "sharpenAmount": 0..150.
+
+Final answer: a short rationale (at most 3 sentences), then ONE JSON object on the last line with the settings of your last applied filter.cameraRaw call (or {{}} if you kept the original):
+{{"params": {{...}}}}"""
+
+
+def tag_of(model):
+    """输出目录名带提示词版本，提示词一改就换目录。"""
+    return f'PhotoCraft-{PROTO}_{model}'
+
+
+def check_prompt(root):
+    """目录里记录提示词全文；已有且不同 → 拒绝续跑（防止新旧提示词结果混在同一目录）。"""
+    f = root / '_meta' / 'prompt.txt'
+    if f.exists() and f.read_text() != PROMPT:
+        sys.exit(f'{f} 与当前 PROMPT 不一致：改了提示词请同时改 PROTO')
+    f.parent.mkdir(parents=True, exist_ok=True)
+    f.write_text(PROMPT)
 
 
 def sample_names(split, n, seed):
@@ -243,7 +273,7 @@ GATE = None
 
 
 def run_one(a, name):
-    tag = f'PhotoCraft_{a.model}'
+    tag = tag_of(a.model)
     uuid = Path(name).stem
     out_jpg = BASE / 'runs/A' / tag / a.split / f'{uuid}.jpg'
     meta = BASE / 'runs/A' / tag / '_meta' / a.split / uuid
@@ -289,7 +319,11 @@ def run_one(a, name):
         status = 'no_params'
     else:
         params = objs[-1]['params']
-        (meta / 'params.json').write_text(json.dumps(objs[-1], ensure_ascii=False, indent=1))
+        # 理由 = 最终回答里 JSON 之前的文字（与 C 类「理由 + 末行 JSON」格式一致）
+        ft = final_text(a.agent, stdout, work)
+        rationale = ft[:ft.rfind('{"params"')].strip() if '{"params"' in ft else ft.strip()
+        (meta / 'params.json').write_text(json.dumps({'params': params, 'rationale': rationale},
+                                                     ensure_ascii=False, indent=1))
         try:
             render(in_dir / name, params, out_jpg, meta / 'render.png')
         except Exception as e:  # 参数不合法等
@@ -318,7 +352,9 @@ def main():
     a = ap.parse_args()
     names = a.names or sample_names(a.split, a.n, a.seed)
     global GATE
-    GATE = LimitGate(a.limit_wait, a.retry_wait, BASE / 'runs/A' / f'PhotoCraft_{a.model}' / f'_status_{a.split}.json')
+    root = BASE / 'runs/A' / tag_of(a.model)
+    check_prompt(root)
+    GATE = LimitGate(a.limit_wait, a.retry_wait, root / f'_status_{a.split}.json')
     GATE.total = len(names)
     print(f'{a.agent}/{a.model} {a.split} n={len(names)}  状态文件 {GATE.status_file}', flush=True)
     with ThreadPoolExecutor(a.workers) as ex:
