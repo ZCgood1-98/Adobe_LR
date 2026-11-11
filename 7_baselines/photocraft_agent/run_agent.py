@@ -24,6 +24,7 @@ import re
 import shutil
 import subprocess
 import sys
+import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -162,6 +163,85 @@ def render(src, params, out_jpg, tmp_png):
     tmp_png.unlink()
 
 
+# ---------- 额度监控 ----------
+# 订阅额度/限流的报错特征（Claude Code 与 Codex 的措辞都覆盖；只在「没拿到参数」的失败调用上检查）
+LIMIT_RE = re.compile(r'usage[ _-]?limit|rate[ _-]?limit|hit your (usage )?limit|limit (reached|exceeded)|'
+                      r'quota|too many requests|\b429\b|overloaded|resets? (at|in)', re.I)
+
+
+def error_text(agent, stdout, stderr):
+    """只抽取报错相关文本（stderr + 错误事件），不看模型正文，避免误判。"""
+    parts = [stderr or '']
+    for line in (stdout or '').splitlines():
+        try:
+            ev = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if agent == 'claude' and ev.get('type') == 'result' and ev.get('is_error'):
+            parts.append(json.dumps(ev, ensure_ascii=False))
+        elif agent == 'claude' and ev.get('type') == 'assistant' and ev.get('error'):
+            parts.append(json.dumps(ev.get('error'), ensure_ascii=False))
+        elif agent == 'codex' and ev.get('type') in ('error', 'turn.failed'):
+            parts.append(json.dumps(ev, ensure_ascii=False))
+    return '\n'.join(parts)
+
+
+class LimitGate:
+    """全局暂停闸门：任一线程撞到额度 → 所有线程暂停；首次等 limit_wait（默认 5h），
+    醒来后若仍限流则每 retry_wait（默认 30min）重试一次；有一次成功就复位。"""
+
+    def __init__(self, limit_wait, retry_wait, status_file):
+        self.lock = threading.Lock()
+        self.until = 0.0
+        self.after_wake = False   # 刚从暂停中醒来、尚未成功过
+        self.limit_wait, self.retry_wait = limit_wait, retry_wait
+        self.status_file = status_file
+        self.done = self.failed = self.trips = self.fail_streak = 0
+        self.total = 0
+        self.write('running')
+
+    def write(self, state, note=''):
+        self.status_file.parent.mkdir(parents=True, exist_ok=True)
+        self.status_file.write_text(json.dumps({
+            'state': state, 'note': note, 'updated': time.strftime('%Y-%m-%d %H:%M:%S'),
+            'resume_at': time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(self.until)) if self.until > time.time() else None,
+            'done': self.done, 'failed': self.failed, 'total': self.total, 'limit_trips': self.trips,
+        }, ensure_ascii=False, indent=1))
+
+    def wait(self):
+        while True:
+            with self.lock:
+                left = self.until - time.time()
+                if left <= 0:
+                    return
+            time.sleep(min(60, left))
+
+    def trip(self, who, msg):
+        with self.lock:
+            now = time.time()
+            if now < self.until:          # 别的线程已经触发过暂停
+                return
+            wait = self.retry_wait if self.after_wake else self.limit_wait
+            self.until = now + wait
+            self.after_wake = True
+            self.trips += 1
+            resume = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(self.until))
+            print(f'[额度] {time.strftime("%H:%M:%S")} {who} 撞到额度：{msg[:160]!r} → 暂停 {wait / 3600:.2f}h，'
+                  f'{resume} 恢复', flush=True)
+            self.write('paused', msg[:300])
+
+    def success(self, ok):
+        with self.lock:
+            self.after_wake = self.after_wake and not ok
+            self.fail_streak = 0 if ok else self.fail_streak + 1
+            self.done += ok
+            self.failed += (not ok)
+            self.write('running')
+
+
+GATE = None
+
+
 def run_one(a, name):
     tag = f'PhotoCraft_{a.model}'
     uuid = Path(name).stem
@@ -169,26 +249,41 @@ def run_one(a, name):
     meta = BASE / 'runs/A' / tag / '_meta' / a.split / uuid
     if out_jpg.exists() and not a.force:
         return {'name': uuid, 'status': 'skip'}
-    work = meta / 'work'
-    shutil.rmtree(work, ignore_errors=True)
-    work.mkdir(parents=True)
     out_jpg.parent.mkdir(parents=True, exist_ok=True)
     in_dir = INPUTS / a.split
     prompt = PROMPT.format(name=name, rounds=MAX_ROUNDS)
-    t0 = time.time()
-    try:
-        r = subprocess.run(build_cmd(a.agent, a.model, prompt, work, in_dir), capture_output=True,
-                           text=True, timeout=a.timeout, cwd=work, stdin=subprocess.DEVNULL)
-        stdout, stderr, rc = r.stdout, r.stderr, r.returncode
-    except subprocess.TimeoutExpired as e:
-        stdout, stderr, rc = (e.stdout or b'').decode() if isinstance(e.stdout, bytes) else (e.stdout or ''), 'TIMEOUT', -1
-    dt = time.time() - t0
-    (meta / 'transcript.jsonl').write_text(stdout)
-    (meta / 'stderr.txt').write_text(stderr)
+    while True:  # 撞额度就等闸门放行后重试同一张
+        GATE.wait()
+        work = meta / 'work'
+        shutil.rmtree(work, ignore_errors=True)
+        work.mkdir(parents=True)
+        t0 = time.time()
+        try:
+            r = subprocess.run(build_cmd(a.agent, a.model, prompt, work, in_dir), capture_output=True,
+                               text=True, timeout=a.timeout, cwd=work, stdin=subprocess.DEVNULL)
+            stdout, stderr, rc = r.stdout, r.stderr, r.returncode
+        except subprocess.TimeoutExpired as e:
+            stdout, stderr, rc = (e.stdout or b'').decode() if isinstance(e.stdout, bytes) else (e.stdout or ''), 'TIMEOUT', -1
+        dt = time.time() - t0
+        (meta / 'transcript.jsonl').write_text(stdout)
+        (meta / 'stderr.txt').write_text(stderr)
+        # 取最后一个带 params 的 JSON 作为最终参数
+        objs = [o for o in iter_json_objects(final_text(a.agent, stdout, work)) if isinstance(o.get('params'), dict)]
+        if a.fake_limit_once and not getattr(a, '_faked', False):  # 测试用：第一次调用假装撞额度
+            a._faked, objs, stderr = True, [], 'FAKE: You have hit your usage limit'
+        if not objs:
+            err = error_text(a.agent, stdout, stderr)
+            m = LIMIT_RE.search(err)
+            if m:
+                GATE.trip(uuid, err[max(0, m.start() - 80):m.end() + 80])
+                continue
+            # 保险：报错措辞没被正则覆盖时，连续 3 张非零退出且无参数也按撞额度处理
+            if rc != 0 and GATE.fail_streak >= 2:
+                GATE.trip(uuid, f'连续失败兜底(rc={rc}): ' + err[-200:])
+                continue
+        break
     au = audit(a.agent, stdout)
     au.update({'rc': rc, 'seconds': round(dt, 1)})
-    # 取最后一个带 params 的 JSON 作为最终参数
-    objs = [o for o in iter_json_objects(final_text(a.agent, stdout, work)) if isinstance(o.get('params'), dict)]
     status = 'ok'
     if not objs:
         status = 'no_params'
@@ -201,6 +296,7 @@ def run_one(a, name):
             status = f'render_fail: {e}'
     au['status'] = status
     (meta / 'audit.json').write_text(json.dumps(au, ensure_ascii=False, indent=1))
+    GATE.success(status == 'ok')
     return {'name': uuid, 'status': status, 'sec': round(dt), 'filters': au['n_filter'],
             'previews': au['n_preview'], 'violations': len(au['violations'])}
 
@@ -216,12 +312,19 @@ def main():
     ap.add_argument('--workers', type=int, default=2)
     ap.add_argument('--timeout', type=int, default=900)
     ap.add_argument('--force', action='store_true')
+    ap.add_argument('--limit-wait', type=float, default=5 * 3600, help='撞额度后首次暂停秒数（默认 5 小时）')
+    ap.add_argument('--retry-wait', type=float, default=1800, help='醒来仍限流时的重试间隔秒数（默认 30 分钟）')
+    ap.add_argument('--fake-limit-once', action='store_true', help='测试：第一次调用假装撞额度')
     a = ap.parse_args()
     names = a.names or sample_names(a.split, a.n, a.seed)
-    print(f'{a.agent}/{a.model} {a.split} n={len(names)}', flush=True)
+    global GATE
+    GATE = LimitGate(a.limit_wait, a.retry_wait, BASE / 'runs/A' / f'PhotoCraft_{a.model}' / f'_status_{a.split}.json')
+    GATE.total = len(names)
+    print(f'{a.agent}/{a.model} {a.split} n={len(names)}  状态文件 {GATE.status_file}', flush=True)
     with ThreadPoolExecutor(a.workers) as ex:
         for res in ex.map(lambda n: run_one(a, n), names):
             print(json.dumps(res, ensure_ascii=False), flush=True)
+    GATE.write('finished')
 
 
 if __name__ == '__main__':
