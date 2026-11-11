@@ -1,0 +1,342 @@
+<title>PhotoCraft 修图对照</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+/* 布局：看片台 —— 顶部汇总，横向胶片条选图，中间大幅对照视窗，下方参数表。背景用中性灰，避免干扰色彩判断 */
+:root {
+  --bg: #e9e9e8;          /* 中性浅灰（修图看片惯例：无色偏底） */
+  --panel: #f6f6f5;
+  --stage: #8a8a8a;       /* 18% 灰附近的看片底 */
+  --fg: #1d1e20;
+  --muted: #5d6066;
+  --line: #cfd0d1;
+  --a: #13807a;           /* Claude 列 */
+  --b: #5a4fcf;           /* Codex 列 */
+  --pos: #d9731e;         /* 变亮 / 变艳 */
+  --neg: #2f6ed2;         /* 变暗 / 变灰 */
+  --focus: #1d1e20;
+  --font-ui: "IBM Plex Sans", "Noto Sans SC", system-ui, sans-serif;
+  --font-zh: "Noto Sans SC", "IBM Plex Sans", system-ui, sans-serif;
+  --font-num: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1f1f20; --panel: #2a2a2b; --stage: #3b3b3b; --fg: #ececea; --muted: #a3a5aa; --line: #3d3e40;
+    --a: #3fbcb3; --b: #9b93ff; --pos: #f09a4f; --neg: #6aa2ff; --focus: #ececea; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1f1f20; --panel: #2a2a2b; --stage: #3b3b3b; --fg: #ececea; --muted: #a3a5aa; --line: #3d3e40;
+  --a: #3fbcb3; --b: #9b93ff; --pos: #f09a4f; --neg: #6aa2ff; --focus: #ececea; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--font-zh); font-size: 14px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 20px 48px;
+}
+.wrap { max-width: 1240px; margin: 0 auto; display: grid; gap: 20px; }
+h1 { font-family: var(--font-ui); font-size: 22px; font-weight: 600; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+h2 { font-size: 13px; font-weight: 600; margin: 0; color: var(--muted); letter-spacing: 0.06em; }
+.sub { color: var(--muted); margin: 4px 0 0; max-width: 72ch; }
+.num { font-family: var(--font-num); font-variant-numeric: tabular-nums; }
+.tag-a { color: var(--a); font-weight: 600; } .tag-b { color: var(--b); font-weight: 600; }
+
+/* 汇总 */
+.summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.sum { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; display: grid; gap: 10px; min-width: 0; }
+.sum-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.sum-head b { font-family: var(--font-ui); font-size: 15px; }
+.sum-head span { color: var(--muted); font-size: 12px; font-family: var(--font-num); }
+.kv { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.kv div { display: grid; gap: 2px; }
+.kv dt { font-size: 11px; color: var(--muted); }
+.kv dd { margin: 0; font-family: var(--font-num); font-size: 16px; }
+.legend-note { font-size: 12px; color: var(--muted); }
+
+/* 胶片条 */
+.strip { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; }
+.thumb { flex: 0 0 auto; border: 2px solid transparent; border-radius: 6px; padding: 0; background: var(--panel); cursor: pointer; display: grid; overflow: hidden; width: 86px; }
+.thumb img { width: 86px; height: 86px; object-fit: cover; display: block; }
+.thumb span { font-family: var(--font-num); font-size: 10.5px; padding: 3px 4px; display: flex; justify-content: space-between; color: var(--muted); }
+.thumb[aria-current="true"] { border-color: var(--fg); }
+.thumb:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* 视窗 */
+.viewer { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 12px; min-width: 0; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; flex-wrap: wrap; }
+.seg button { font: inherit; font-size: 13px; background: transparent; color: var(--fg); border: 0; padding: 6px 12px; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[aria-pressed="true"] { background: var(--fg); color: var(--panel); }
+.pickers { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+select { font: inherit; font-size: 13px; background: var(--bg); color: var(--fg); border: 1px solid var(--line); border-radius: 6px; padding: 4px 6px; }
+.nav { display: flex; gap: 6px; align-items: center; font-size: 13px; color: var(--muted); }
+.nav button { font: inherit; background: var(--bg); color: var(--fg); border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+
+.stage { background: var(--stage); border-radius: 6px; display: grid; place-items: center; padding: 12px; min-height: 240px; }
+.cmp { position: relative; max-width: 100%; touch-action: none; user-select: none; cursor: ew-resize; line-height: 0; }
+.cmp img { display: block; max-width: 100%; max-height: 72vh; width: auto; height: auto; }
+.cmp .top { position: absolute; inset: 0; }
+.cmp .top img { width: 100%; height: 100%; }
+.cmp .bar { position: absolute; top: 0; bottom: 0; width: 2px; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.35); transform: translateX(-1px); pointer-events: none; }
+.cmp .knob { position: absolute; top: 50%; width: 30px; height: 30px; border-radius: 50%; background: #fff; transform: translate(-50%, -50%); box-shadow: 0 1px 4px rgba(0,0,0,.4); pointer-events: none; display: grid; place-items: center; color: #222; font: 600 13px/1 var(--font-ui); }
+.cmp .lab { position: absolute; top: 8px; font: 500 12px/1 var(--font-ui); padding: 5px 8px; border-radius: 4px; background: rgba(20,20,20,.72); color: #fff; pointer-events: none; }
+.cmp .lab.l { left: 8px; } .cmp .lab.r { right: 8px; }
+.range { width: 100%; }
+
+.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; width: 100%; }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; width: 100%; }
+.cell { display: grid; gap: 6px; min-width: 0; }
+.cell img { width: 100%; height: auto; max-height: 64vh; object-fit: contain; display: block; border-radius: 3px; }
+.cell figcaption { font-size: 12px; color: #f2f2f2; display: flex; justify-content: space-between; gap: 6px; flex-wrap: wrap; }
+.scale { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #f2f2f2; width: 100%; flex-wrap: wrap; }
+.scale .ramp { flex: 1 1 160px; height: 10px; border-radius: 3px; background: linear-gradient(90deg, rgb(40,110,210), rgb(128,128,128), rgb(235,120,30)); min-width: 120px; }
+
+/* 详情 */
+.detail { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 860px) { .detail { grid-template-columns: 1fr; } .grid3 { grid-template-columns: 1fr; } .grid2 { grid-template-columns: 1fr; } }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 10px; min-width: 0; }
+.tablebox { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { padding: 5px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; }
+th { font-weight: 500; color: var(--muted); font-size: 12px; }
+td.v { font-family: var(--font-num); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.barcell { width: 26%; }
+.pbar { position: relative; height: 8px; background: var(--bg); border-radius: 2px; }
+.pbar i { position: absolute; top: 0; bottom: 0; border-radius: 2px; }
+.pbar::after { content: ""; position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: var(--muted); opacity: .5; }
+.flag { font-size: 11px; color: var(--pos); white-space: nowrap; }
+.quote { margin: 0; padding: 8px 10px; border-left: 3px solid var(--line); font-size: 13px; color: var(--fg); }
+.quote.a { border-color: var(--a); } .quote.b { border-color: var(--b); }
+.metrics { display: grid; grid-template-columns: auto 1fr 1fr; gap: 4px 12px; font-size: 13px; align-items: baseline; }
+.metrics .h { color: var(--muted); font-size: 12px; }
+.small { font-size: 12px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .thumb, .seg button { transition: background-color .12s, border-color .12s; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>PhotoCraft 修图对照</h1>
+    <p class="sub" id="subline">测试集抽样，<span class="tag-a">Claude Code · Haiku 5.5</span> 与 <span class="tag-b">Codex · gpt-6-luna</span> 通过 PhotoCraft MCP 调 Camera Raw 滤镜的全局修图结果。成品由「原图 + 智能体最终参数」确定性重渲染。</p>
+  </header>
+
+  <section class="summary" id="summary" aria-label="汇总"></section>
+  <p class="legend-note">ΔE：CIELAB 色差均值（相对原图，越大改动越大）。ΔL：平均亮度变化（正 = 变亮）。ΔC：平均彩度变化（正 = 更艳）。两模型间 ΔE 衡量二者成品差多少。</p>
+
+  <nav class="strip" id="strip" aria-label="选择图片"></nav>
+
+  <section class="viewer" aria-label="对照视窗">
+    <div class="toolbar">
+      <div class="seg" role="group" aria-label="查看方式" id="modes">
+        <button type="button" data-mode="slider" aria-pressed="true">滑块对比</button>
+        <button type="button" data-mode="side" aria-pressed="false">三联并排</button>
+        <button type="button" data-mode="dL" aria-pressed="false">亮度差异 ΔL</button>
+        <button type="button" data-mode="dC" aria-pressed="false">彩度差异 ΔC</button>
+      </div>
+      <div class="nav">
+        <button type="button" id="prev" aria-label="上一张">←</button>
+        <span class="num" id="counter">1 / 10</span>
+        <button type="button" id="next" aria-label="下一张">→</button>
+      </div>
+    </div>
+    <div class="pickers" id="pickers">
+      <label for="left">左</label>
+      <select id="left"><option value="in">原图</option><option value="claude">Claude</option><option value="codex">Codex</option></select>
+      <label for="right">右</label>
+      <select id="right"><option value="in">原图</option><option value="claude" selected>Claude</option><option value="codex">Codex</option></select>
+      <button type="button" class="seg-quick" id="q1" style="font:inherit;font-size:12px;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:3px 8px;cursor:pointer">原图 ↔ Claude</button>
+      <button type="button" id="q2" style="font:inherit;font-size:12px;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:3px 8px;cursor:pointer">原图 ↔ Codex</button>
+      <button type="button" id="q3" style="font:inherit;font-size:12px;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:3px 8px;cursor:pointer">Claude ↔ Codex</button>
+    </div>
+    <div class="stage" id="stage"></div>
+    <p class="small" id="hint">拖动图片或滑杆移动分界线；键盘 ← → 切换图片。</p>
+  </section>
+
+  <section class="detail">
+    <div class="card">
+      <h2>最终参数（Camera Raw 滑块单位）</h2>
+      <div class="tablebox"><table id="ptable"></table></div>
+      <p class="small">条形以 0 为中线，按各参数量程归一。⇄ 表示两个模型调的方向相反。</p>
+    </div>
+    <div class="card">
+      <h2>本张指标</h2>
+      <div class="metrics" id="metrics"></div>
+      <h2>模型自述理由</h2>
+      <p class="quote a" id="ra"></p>
+      <p class="quote b" id="rb"></p>
+    </div>
+  </section>
+</div>
+
+<script>
+const DATA = /*DATA*/null;
+const NAMES = { in: '原图', claude: 'Claude · Haiku 5.5', codex: 'Codex · gpt-6-luna' };
+const RANGE = { exposure: 5, sharpenAmount: 150 };  // 其余默认 ±100
+const items = DATA.items;
+let idx = 0, mode = 'slider', pos = 50;
+const $ = (s) => document.querySelector(s);
+const src = (it, k) => `img/${it.id}_${k}.jpg`;
+const fmt = (v, d = 1) => (v > 0 ? '+' : '') + Number(v).toFixed(d);
+const mean = (a) => a.reduce((s, x) => s + x, 0) / a.length;
+const median = (a) => { const s = [...a].sort((x, y) => x - y); return s[Math.floor(s.length / 2)]; };
+
+function renderSummary() {
+  const box = $('#summary'); box.innerHTML = '';
+  for (const k of ['claude', 'codex']) {
+    const ms = items.map((it) => it.models[k]);
+    const el = document.createElement('div'); el.className = 'sum';
+    el.innerHTML = `<div class="sum-head"><b class="${k === 'claude' ? 'tag-a' : 'tag-b'}">${NAMES[k]}</b><span>${ms.length} 张 · 中位 ${median(ms.map((m) => m.seconds)).toFixed(0)} 秒/张</span></div>
+      <dl class="kv"><div><dt>ΔE 均值</dt><dd>${mean(ms.map((m) => m.dE)).toFixed(2)}</dd></div>
+      <div><dt>ΔL 均值</dt><dd>${fmt(mean(ms.map((m) => m.dL)), 2)}</dd></div>
+      <div><dt>ΔC 均值</dt><dd>${fmt(mean(ms.map((m) => m.dC)), 2)}</dd></div>
+      <div><dt>调参轮数</dt><dd>${mean(ms.map((m) => m.filters)).toFixed(1)}</dd></div></dl>`;
+    box.appendChild(el);
+  }
+  const el = document.createElement('div'); el.className = 'sum';
+  const db = items.map((it) => it.dE_between);
+  const far = items.reduce((b, it, i) => (it.dE_between > items[b].dE_between ? i : b), 0);
+  el.innerHTML = `<div class="sum-head"><b>两模型之间</b><span>成品对成品</span></div>
+    <dl class="kv"><div><dt>ΔE 均值</dt><dd>${mean(db).toFixed(2)}</dd></div>
+    <div><dt>ΔE 最大</dt><dd>${Math.max(...db).toFixed(2)}</dd></div>
+    <div><dt>分歧最大</dt><dd><button type="button" id="jumpfar" style="font:inherit;font-size:13px;background:none;border:0;color:var(--fg);text-decoration:underline;cursor:pointer;padding:0">第 ${far + 1} 张</button></dd></div>
+    <div><dt>越界调用</dt><dd>0</dd></div></dl>`;
+  box.appendChild(el);
+  $('#jumpfar').onclick = () => select(far);
+}
+
+function renderStrip() {
+  const strip = $('#strip'); strip.innerHTML = '';
+  items.forEach((it, i) => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'thumb';
+    b.setAttribute('aria-label', `第 ${i + 1} 张，两模型间 ΔE ${it.dE_between}`);
+    b.innerHTML = `<img src="${src(it, 'in')}" alt="" loading="lazy"><span><em style="font-style:normal">${i + 1}</em><em style="font-style:normal">ΔE ${it.dE_between.toFixed(1)}</em></span>`;
+    b.onclick = () => select(i);
+    strip.appendChild(b);
+  });
+}
+
+function sliderView(it) {
+  const L = $('#left').value, R = $('#right').value;
+  const wrap = document.createElement('div'); wrap.style.cssText = 'display:grid;gap:10px;justify-items:center;width:100%';
+  const c = document.createElement('div'); c.className = 'cmp';
+  c.innerHTML = `<img src="${src(it, R)}" alt="${NAMES[R]}" width="${it.w}" height="${it.h}">
+    <div class="top"><img src="${src(it, L)}" alt="${NAMES[L]}"></div>
+    <div class="bar"></div><div class="knob">⇔</div>
+    <span class="lab l">${NAMES[L]}</span><span class="lab r">${NAMES[R]}</span>`;
+  const range = document.createElement('input'); range.type = 'range'; range.min = 0; range.max = 100; range.step = 0.5; range.value = pos;
+  range.className = 'range'; range.id = 'split'; range.setAttribute('aria-label', '分界线位置');
+  const apply = () => {
+    c.querySelector('.top').style.clipPath = `inset(0 ${100 - pos}% 0 0)`;
+    c.querySelector('.bar').style.left = pos + '%'; c.querySelector('.knob').style.left = pos + '%';
+    range.value = pos;
+  };
+  const fromEvent = (e) => { const r = c.getBoundingClientRect(); pos = Math.min(100, Math.max(0, ((e.clientX - r.left) / r.width) * 100)); apply(); };
+  let drag = false;
+  c.addEventListener('pointerdown', (e) => { drag = true; c.setPointerCapture(e.pointerId); fromEvent(e); });
+  c.addEventListener('pointermove', (e) => { if (drag) fromEvent(e); });
+  c.addEventListener('pointerup', () => { drag = false; });
+  range.addEventListener('input', () => { pos = +range.value; apply(); });
+  apply();
+  range.style.maxWidth = '560px';
+  wrap.append(c, range);
+  return wrap;
+}
+
+function sideView(it) {
+  const g = document.createElement('div'); g.className = 'grid3';
+  for (const k of ['in', 'claude', 'codex']) {
+    const m = it.models[k];
+    const f = document.createElement('figure'); f.className = 'cell'; f.style.margin = 0;
+    f.innerHTML = `<img src="${src(it, k)}" alt="${NAMES[k]}"><figcaption><span>${NAMES[k]}</span>${m ? `<span class="num">ΔE ${m.dE.toFixed(2)}</span>` : ''}</figcaption>`;
+    g.appendChild(f);
+  }
+  return g;
+}
+
+function diffView(it, kind) {
+  const outer = document.createElement('div'); outer.style.cssText = 'display:grid;gap:10px;width:100%';
+  const g = document.createElement('div'); g.className = 'grid2';
+  for (const k of ['claude', 'codex']) {
+    const m = it.models[k];
+    const f = document.createElement('figure'); f.className = 'cell'; f.style.margin = 0;
+    f.innerHTML = `<img src="img/${it.id}_${k}_${kind}.jpg" alt="${NAMES[k]} ${kind}"><figcaption><span>${NAMES[k]}</span><span class="num">平均 ${fmt(m[kind], 2)}</span></figcaption>`;
+    g.appendChild(f);
+  }
+  const r = kind === 'dL' ? DATA.dL_range : DATA.dC_range;
+  const sc = document.createElement('div'); sc.className = 'scale';
+  sc.innerHTML = kind === 'dL'
+    ? `<span class="num">−${r} 变暗</span><span class="ramp"></span><span class="num">+${r} 变亮</span>`
+    : `<span class="num">−${r} 变灰</span><span class="ramp"></span><span class="num">+${r} 更艳</span>`;
+  outer.append(g, sc);
+  return outer;
+}
+
+function renderStage() {
+  const it = items[idx], st = $('#stage'); st.innerHTML = '';
+  $('#pickers').hidden = mode !== 'slider';
+  $('#hint').textContent = mode === 'slider' ? '拖动图片或滑杆移动分界线；键盘 ← → 切换图片。'
+    : mode === 'side' ? '三张同尺寸并排；键盘 ← → 切换图片。'
+    : '相对原图的逐像素变化，灰色表示未变；键盘 ← → 切换图片。';
+  st.appendChild(mode === 'slider' ? sliderView(it) : mode === 'side' ? sideView(it) : diffView(it, mode));
+}
+
+function renderDetail() {
+  const it = items[idx], A = it.models.claude, B = it.models.codex;
+  const keys = [...new Set([...Object.keys(A.params), ...Object.keys(B.params)])];
+  const t = $('#ptable');
+  let html = '<thead><tr><th>参数</th><th class="tag-a">Claude</th><th class="tag-b">Codex</th><th class="barcell">幅度</th><th></th></tr></thead><tbody>';
+  for (const k of keys) {
+    const a = A.params[k], b = B.params[k];
+    const show = (v) => v === undefined ? '<span style="color:var(--muted)">—</span>' : (typeof v === 'object' ? `<span style="font-size:11px">${JSON.stringify(v)}</span>` : fmt(v, k === 'exposure' ? 2 : 0));
+    let bar = '', flag = '';
+    if ((typeof a === 'number' || a === undefined) && (typeof b === 'number' || b === undefined)) {
+      const rg = RANGE[k] || 100;
+      const seg = (v, col, top) => {
+        if (v === undefined || v === 0) return '';
+        const w = Math.min(50, (Math.abs(v) / rg) * 50);
+        const left = v > 0 ? 50 : 50 - w;
+        return `<i style="left:${left}%;width:${w}%;background:${col};top:${top};height:45%"></i>`;
+      };
+      bar = `<div class="pbar">${seg(a, 'var(--a)', '0')}${seg(b, 'var(--b)', '55%')}</div>`;
+      if (a && b && Math.sign(a) !== Math.sign(b)) flag = '<span class="flag" title="方向相反">⇄</span>';
+    }
+    html += `<tr><td>${k}</td><td class="v">${show(a)}</td><td class="v">${show(b)}</td><td class="barcell">${bar}</td><td>${flag}</td></tr>`;
+  }
+  t.innerHTML = html + '</tbody>';
+  const row = (label, f, d = 2) => `<span class="h">${label}</span><span class="num tag-a">${f(A)}</span><span class="num tag-b">${f(B)}</span>`;
+  $('#metrics').innerHTML = `<span class="h"></span><span class="h tag-a">Claude</span><span class="h tag-b">Codex</span>`
+    + row('ΔE 均值', (m) => m.dE.toFixed(2)) + row('ΔE p95', (m) => m.dE_p95.toFixed(2))
+    + row('ΔL 均值', (m) => fmt(m.dL, 2)) + row('ΔC 均值', (m) => fmt(m.dC, 2))
+    + row('调参轮数', (m) => m.filters) + row('预览次数', (m) => m.previews) + row('耗时', (m) => m.seconds.toFixed(0) + ' 秒')
+    + `<span class="h">两模型间 ΔE</span><span class="num" style="grid-column:span 2">${it.dE_between.toFixed(2)}</span>`;
+  $('#ra').innerHTML = `<b class="tag-a">Claude：</b>${A.rationale}`;
+  $('#rb').innerHTML = `<b class="tag-b">Codex：</b>${B.rationale}`;
+}
+
+function select(i) {
+  idx = (i + items.length) % items.length;
+  document.querySelectorAll('.thumb').forEach((b, j) => b.setAttribute('aria-current', j === idx ? 'true' : 'false'));
+  const cur = document.querySelectorAll('.thumb')[idx]; if (cur) cur.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  $('#counter').textContent = `${idx + 1} / ${items.length}`;
+  renderStage(); renderDetail();
+}
+
+document.querySelectorAll('#modes button').forEach((b) => b.onclick = () => {
+  mode = b.dataset.mode;
+  document.querySelectorAll('#modes button').forEach((x) => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
+  renderStage();
+});
+$('#left').onchange = renderStage; $('#right').onchange = renderStage;
+const quick = (l, r) => () => { $('#left').value = l; $('#right').value = r; renderStage(); };
+$('#q1').onclick = quick('in', 'claude'); $('#q2').onclick = quick('in', 'codex'); $('#q3').onclick = quick('claude', 'codex');
+$('#prev').onclick = () => select(idx - 1); $('#next').onclick = () => select(idx + 1);
+document.addEventListener('keydown', (e) => {
+  if (e.target.matches('input, select, textarea')) return;
+  if (e.key === 'ArrowLeft') select(idx - 1);
+  if (e.key === 'ArrowRight') select(idx + 1);
+});
+$('#subline').insertAdjacentHTML('beforeend', ` 共 ${items.length} 张（${DATA.split}）。`);
+renderSummary(); renderStrip(); select(0);
+</script>
