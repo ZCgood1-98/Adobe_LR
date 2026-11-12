@@ -1054,11 +1054,12 @@ def parse_mcq_answer(response: str) -> Optional[str]:
     for line in response.splitlines():
         if line.strip().startswith("ANSWER:"):
             ans = line.split(":", 1)[1].strip().upper()
-            if ans and ans[0] in "ABCD":
+            # 选项共 A–E 五个；此前漏了 E，负向题答「E 明显减弱」会被误判
+            if ans and ans[0] in "ABCDE":
                 return ans[0]
     # Fallback
     import re
-    m = re.search(r'\b([ABCD])\b', response.upper())
+    m = re.search(r'\b([ABCDE])\b', response.upper())
     return m.group(1) if m else None
 
 
