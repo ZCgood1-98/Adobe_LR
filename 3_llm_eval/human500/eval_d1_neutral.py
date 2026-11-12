@@ -69,7 +69,7 @@ REASON: <one sentence giving the core reason>"""
 PROMPT_SHA = hashlib.sha256(PROMPT.encode()).hexdigest()[:12]
 
 TEMPERATURE = 0.0
-MAX_TOKENS = 4000        # 带思考的模型会先消耗一部分，留足余量
+MAX_TOKENS = 8000        # 带思考的模型会先消耗一部分；4000 时 qwen3.6 试跑有 1/4 思考耗尽、回复为空
 EMPTY_TRIES = 3          # 回复里解析不出总体选择时的重试次数
 RETRY_HTTP = (408, 429, 500, 502, 503, 504, 520, 524)
 ORDERS = ("original_first", "version_0_first")
