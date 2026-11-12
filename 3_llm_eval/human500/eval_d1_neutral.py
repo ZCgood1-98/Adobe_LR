@@ -25,6 +25,7 @@ import base64
 import hashlib
 import json
 import random
+import re
 import sys
 import threading
 import time
@@ -73,6 +74,28 @@ MAX_TOKENS = 8000        # 带思考的模型会先消耗一部分；4000 时 qw
 EMPTY_TRIES = 3          # 回复里解析不出总体选择时的重试次数
 RETRY_HTTP = (408, 429, 500, 502, 503, 504, 520, 524)
 ORDERS = ("original_first", "version_0_first")
+
+
+# 有的模型不写 "PREFER: A"，而是把结论接在小标题后面："Overall aesthetic judgment: A"
+# 字母后面不能紧跟小写单词，避免把 "judgment: A stronger image…" 里的冠词 A 当成答案
+_RE_OVERALL_ALT = re.compile(r"Overall aesthetic judgment\W{0,6}:\W{0,6}([AB])\b(?!\s+[a-z])")
+
+
+def parse_reply(raw: str | None) -> dict:
+    """稳健解析一次回复；总体结论解析不到时再认上面那种写法。"""
+    parsed = parse_d1(raw)
+    if parsed["overall"] is None and raw:
+        found = _RE_OVERALL_ALT.findall(raw)
+        if found:
+            parsed["overall"] = found[-1]
+    return parsed
+
+
+def chosen_of(rec: dict) -> tuple[str | None, dict]:
+    """由原始回复重新得出 (总体选了哪张, 各子维度选了哪张)，取值 original / version_0 / None。"""
+    parsed = parse_reply(rec.get("raw"))
+    to_side = {"A": rec["a_is"], "B": rec["b_is"]}
+    return to_side.get(parsed["overall"]), {k: to_side.get(parsed[k]) for k in SUBDIMS}
 
 
 def slug(model: str) -> str:
@@ -135,7 +158,7 @@ def run_one(job: dict, base: str, hdr: dict, data: Path) -> dict:
             rec["finish_reason"] = ch.get("finish_reason")
             rec["raw"] = (ch.get("message") or {}).get("content") or ""
             rec["usage"] = {k: use.get(k) for k in ("prompt_tokens", "completion_tokens", "total_tokens")}
-            parsed = parse_d1(rec["raw"])
+            parsed = parse_reply(rec["raw"])
             if parsed["overall"] in ("A", "B"):
                 break
         rec["parsed"] = parsed
@@ -176,7 +199,7 @@ def main() -> None:
             for line in f.read_text(encoding="utf-8").splitlines():
                 if line.strip():
                     r = json.loads(line)
-                    if r.get("ok") and r.get("prompt_sha") == PROMPT_SHA:
+                    if r.get("prompt_sha") == PROMPT_SHA and r.get("raw") and chosen_of(r)[0]:
                         done.add((r["sample_id"], r["order"]))
         done_n += len(done)
         jobs += [{"model": model, "pair": p, "order": o}

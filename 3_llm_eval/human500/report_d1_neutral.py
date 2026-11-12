@@ -30,6 +30,8 @@ from pathlib import Path
 
 import numpy as np
 
+from eval_d1_neutral import chosen_of  # 统一用同一个解析器，按原始回复重新解析
+
 REPO_ROOT = Path(__file__).resolve().parents[2]
 SUBDIMS = ("light", "color", "detail", "impact")
 ORDERS = ("original_first", "version_0_first")
@@ -52,7 +54,9 @@ def load_model(path: Path) -> tuple[dict, dict]:
             spend["pt"].append(u["prompt_tokens"]); spend["ct"].append(u.get("completion_tokens") or 0)
         if r.get("returned_model"):
             spend["returned"][r["returned_model"]] += 1
-        if r.get("ok"):
+        chosen, chosen_sub = chosen_of(r) if r.get("raw") else (None, {})
+        if chosen:
+            r["chosen"], r["chosen_sub"] = chosen, chosen_sub
             best[(r["sample_id"], r["order"])] = r
         else:
             spend["failed"] += 1
