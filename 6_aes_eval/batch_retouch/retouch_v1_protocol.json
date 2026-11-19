@@ -1,0 +1,68 @@
+{
+  "version": "retouch-v1",
+  "date": "2026-11-19",
+  "authorized": "用户 2026-11-19：『我希望来优化新的评审模式』；本轮在运行任何候选方案之前写定",
+  "stage": "calibration_only",
+  "parent": "batch_global_20261118（首轮 global-paired-calibration-v1 与 content_v2）；不修改其中任何文件，只复用其冻结的特征、PCA 与参考库",
+  "problem_statement": [
+    "MSC 人工校准几乎全是退化，从未检验能否认出改善",
+    "合成饱和度扫描中，提高饱和度在 2–4 倍内一直加分",
+    "content_v2 只支持 5/10 类",
+    "缺少真实修图（同一张图、不同修法）的人工验证"
+  ],
+  "target_taste": "主判据以『偏好专家修图』的口味为准（本项目人工评审中标注者 A、C：专家修图无论修鲜艳还是修淡都约九成更受偏好；项目以专家修图为参考）。大众口味（REPID 同图偏好、极端风格投票）作为第二口径报告，其中极端风格作为门槛之一。",
+  "feature_space": "不变：OpenAI CLIP ViT-L/14 quickgelu，长边 512 → 224 中心裁剪，L2 归一化，float16，首轮 16 维 PCA（pca.npz）",
+  "banks": {
+    "R1S": "首轮 banks.parquet，arm=source_balanced（不按内容筛选，覆盖全部内容）",
+    "R1C": "首轮 banks.parquet，arm=source_and_color_balanced",
+    "V2G": "content_v2 banks.parquet，filtered_global（按参考库自身类别比例混合）"
+  },
+  "modes": {
+    "contrast": "Q = (D_L − D_H)/尺度（原定义）",
+    "ideal": "Q = −D_H/尺度（理想点：只看离高分库多近，偏离高分库分布的任何方向都扣分）",
+    "low": "Q = D_L/尺度（只用于拆解 contrast = ideal + low，不作候选）"
+  },
+  "candidates": ["R1S-contrast", "R1C-contrast", "V2G-contrast", "R1S-ideal", "R1C-ideal", "V2G-ideal"],
+  "validation_sets": {
+    "V1_expert_edits": {
+      "data": "本项目 conditions.jsonl 训练分区（split=train）；每个原图组（family）用 RNG seed 20261119 在文件齐全的 (条件, 版本) 中抽 1 对：条件输入图 vs 该版本真实专家终图 scraped_data_v4/.../version_N/main_image.png。val/test 不用。",
+      "features": "输入图与专家终图全部用当前编码路径重新提取（旧项目输入缓存与当前路径最小余弦 0.9956，不混用）",
+      "subgroups": "按 Hasler–Süsstrunk 色彩丰富度（长边 512）分：vivid = Δ>0 且非黑白；muted = Δ≤0 且非黑白；bw = 黑白条件（只报告）",
+      "same_direction": "每批 64 个家族，5 种划分（seed 0–4）；ΔQ = Q(专家终图) − Q(输入图)",
+      "mixed_direction": "每个子组内用 RNG seed 20261119 随机翻转一半家族的前后方向（与分数、特征无关）；批标签 = 批内方向均值（+1 = 专家终图在后）；Spearman(ΔQ, 标签)，5 种划分取均值；家族 bootstrap 200 次给 95% 区间（重抽后按 seed 0 划分重组批次）"
+    },
+    "V2_repid_pairs": {
+      "data": "5_training/analysis/results/dear/pairs.parquet，split=train（开发）；明确对 |mos−0.5|>0.15；按 kind 分 render_vs_render 与其余（对中性渲染）；每个场景只取 1 对（RNG seed 20261119）",
+      "design": "随机方向批次：每对随机决定胜者在前或在后；批标签 = 批内方向均值；每批 64，5 种划分；Spearman(ΔQ, 标签)；同口径报告『批内平均色彩丰富度差』这一平凡基线",
+      "role": "大众口味，只报告，不作门槛；REPID test 留作以后确认"
+    },
+    "V3_repid_extreme_styles": {
+      "data": "REPID extreme_styles 四个轴（饱和度、对比度、曝光、色温），每轴 19 个场景 × 9 档，人工两两投票",
+      "human_curve": "每档的平均胜率（该档参与的所有对上被选中的概率）",
+      "metric_curve": "每档 19 个场景组成一批；ΔQ(档) = Q(该档) − Q(原图档)",
+      "statistic": "9 档上 Spearman(指标曲线, 人工曲线)；场景 bootstrap 1,000 次给 95% 区间"
+    },
+    "V4_msc_degradations": {
+      "data": "首轮 calibration_pairs.parquet 全部 851 对与首轮 batches.parquet（n=64，seed 0–4）；双向版用首轮 bidirectional 的翻转方案（seed 20261119）",
+      "statistics": "同向批次 Spearman(ΔQ, ΔMOS) 的 5 划分均值；双向批次同上"
+    },
+    "V5_synthetic_saturation": {
+      "data": "首轮 oversaturation 的 256 个 MSC 原图、13 个倍数（0–16）；固定排列分成 4 批 × 64",
+      "statistics": "各倍数平均 ΔQ（相对 1 倍）；峰值倍数；8 倍与 16 倍是否低于原图",
+      "role": "无人工标签，只报告"
+    }
+  },
+  "criteria": {
+    "K1_expert_edits": "vivid 与 muted 两个子组都满足：(i) 同向批次平均 ΔQ > 0，且全部完整批次（5 划分合计）中 ΔQ>0 的比例 ≥ 80%；(ii) 随机方向 Spearman 的 5 划分均值 > 0，且家族 bootstrap 95% 区间下界 > 0",
+    "K2_extreme_styles": "四个轴的档位 Spearman 都 > 0",
+    "K3_degradations": "V4 双向批次 Spearman（n=64，5 划分均值）≥ 0.5，且不低于同一参考库 contrast 方案 0.05 以上",
+    "pass": "K1、K2、K3 全部满足",
+    "selection": "通过者中取 K1 muted 子组随机方向 Spearman 最高者；相差 < 0.02 时依次优先 R1S（覆盖全部内容）、contrast（定义不变）",
+    "if_none_pass": "记录每个候选未通过的判据；下一轮（retouch-v2）在相同判据下考虑更换表征，不在本轮调参"
+  },
+  "not_allowed": [
+    "根据本轮结果修改判据、阈值或候选集合",
+    "使用本项目 val/test、REPID test、MSC/Flickr/REAL-CUR 锁定集",
+    "按分数或输出内容挑选、删除图片"
+  ]
+}
