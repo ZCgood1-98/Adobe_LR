@@ -1,0 +1,51 @@
+{
+  "version": "retouch-v2",
+  "date": "2026-11-19",
+  "stage": "calibration_only",
+  "parent": "retouch-v1（protocol sha256 4642395bcf4375e4b49faebf5588fc54e386ddb1efe539c1709e339b0151c90f）；本轮在运行任何候选前写定",
+  "v1_findings_motivating_changes": [
+    "6 个候选全部未通过。ideal（理想点）三个都在 K1/K3 失败：真实专家修图离高分库更远，理想点把修图判为变差 ⇒ 本轮不再测试 ideal",
+    "contrast 三个都通过 K3；K1 中修鲜艳、修淡、黑白的同向批次 ΔQ 全部 >0，但修淡子组只有 627 对、每划分 9 批，随机方向 Spearman 的 bootstrap 下界 <0（统计功效不足）",
+    "contrast 三个都在 K2 失败于色温轴（Spearman −0.37 ～ −0.70）：偏暖与偏冷都加分，呈 V 形；诊断显示两种偏色在 CLIP 空间的均值位移余弦 0.69–0.77，加分几乎全部来自均值项 ⇒ 问题在表征（CLIP 把偏色都视为『有风格』），不在距离公式",
+    "旧验证中在 REPID 同图偏好上训练的头在色温轴判对（gsd_HEAD +0.75），旧审美评分器 FB 同样用 REPID 同图偏好监督训练 ⇒ 按 v1 预先写定的下一步更换表征"
+  ],
+  "candidates": {
+    "CLIP-R1S-contrast": "v1 同定义，在本轮 V1 设计下重算（对照）",
+    "CLIP-R1C-contrast": "同上（对照）",
+    "CLIP-V2G-contrast": "同上（对照）",
+    "FB-R1S-contrast": "新候选：AesCLIP（ViT-B/16）投影前 768 维 L2 归一化特征 → 发布版 FB_l0.3 的 rep()（种子 0/1/2 各一个）→ L2 归一化 → 16 维 PCA（每个种子各自用 R1S 第 0 次抽样的 H∪L 拟合）→ 与首轮相同的 抽样×来源 单元、W2 距离、尺度与 contrast 组合；三个种子的 Q 取平均。参考库成员沿用首轮 R1S（不按内容筛选）"
+  },
+  "fb_contamination_notes": [
+    "FB 训练用了 AVA 官方 train（90% 拟合）与 REPID 官方 train 场景（80% 拟合）；没有用本项目数据（gamma=0）",
+    "因此 FB 臂不报告 V2（REPID train 偏好对被污染）；REPID test 继续保留",
+    "参考库中 AVA 来源的图可能在 FB 训练集中，只影响参考库分离度，不污染验证集",
+    "极端风格的场景可能与 REPID train 场景重叠，但投票与这些合成图未用于训练；如实报告"
+  ],
+  "validation_sets": {
+    "V1_expert_edits": {
+      "change_from_v1": "改用训练分区全部 (条件, 版本) 对（v1 为每组 1 对），以解决修淡子组统计功效不足；判据阈值不变",
+      "data": "conditions.jsonl split=train 的全部 (条件, 版本)，输入图与真实专家终图文件齐全者；按每对自己的色彩丰富度变化与条件的黑白标记分为 vivid / muted / bw",
+      "batching": "每批 64 对，同一批内不出现同一组；划分 seed 0–4：按 RNG(20261119+seed) 打乱后贪心装批，剩余不足 64 的丢弃",
+      "same_direction": "ΔQ = Q(专家终图) − Q(输入图)",
+      "mixed_direction": "子组内用 RNG(20261119) 随机翻转一半配对的方向；批标签 = 批内方向均值；Spearman(ΔQ, 标签) 的 5 划分均值",
+      "bootstrap": "按组重抽（有放回，200 次），取被抽中组的全部配对，按 seed 0 规则装批，计算随机方向 Spearman 的 95% 区间"
+    },
+    "V2_repid_pairs": "同 v1，只对 CLIP 臂报告",
+    "V3_repid_extreme_styles": "同 v1",
+    "V4_msc_degradations": "同 v1",
+    "V5_synthetic_saturation": "同 v1；FB 臂按首轮 oversaturation 的生成方式（resize_long 后 PIL ImageEnhance.Color）重新生成 256 张原图的 13 个倍数并提取 FB 特征"
+  },
+  "criteria": {
+    "K1_expert_edits": "同 v1：vivid 与 muted 都满足 (i) 同向批次平均 ΔQ>0 且 ΔQ>0 的批次比例 ≥80%；(ii) 随机方向 Spearman 5 划分均值 >0 且 bootstrap 95% 区间下界 >0",
+    "K2_extreme_styles": "同 v1：四个轴的档位 Spearman 都 >0",
+    "K3_degradations": "V4 双向 Spearman 5 划分均值 ≥0.5，且不低于同一参考库的 CLIP contrast 方案 0.05 以上（FB-R1S 对照 CLIP-R1S-contrast）",
+    "pass": "K1、K2、K3 全部满足",
+    "selection": "通过者中取 K1 muted 随机方向 Spearman 最高者；相差 <0.02 时依次优先 R1S、CLIP（不需要额外模型）",
+    "if_none_pass": "记录未通过的判据；不在本轮调参"
+  },
+  "not_allowed": [
+    "根据本轮结果修改判据、阈值或候选集合",
+    "使用本项目 val/test、REPID test、MSC/Flickr/REAL-CUR 锁定集",
+    "按分数或输出内容挑选、删除图片"
+  ]
+}
