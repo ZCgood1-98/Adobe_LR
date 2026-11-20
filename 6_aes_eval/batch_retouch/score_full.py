@@ -13,7 +13,8 @@
   · 附带 Δ色彩丰富度（7_baselines/runs/ABC_aes/groups.parquet 的逐组色彩丰富度；专家为组内各版本均值）
 
 用法（aes 环境）：
-  python 6_aes_eval/batch_retouch/score_full.py --method fb              # 需先运行 extract_full.py --fb
+  python 6_aes_eval/batch_retouch/score_full.py --method fb_final        # 最终方案（需先运行 extract_full.py --fb）
+  python 6_aes_eval/batch_retouch/score_full.py --method fb              # retouch-v2 的五来源候选
   python 6_aes_eval/batch_retouch/score_full.py --method clip --bank R1S # 需先运行 extract_full.py
 产物：<bg>/retouch_full/table_<方案>.csv
 """
@@ -94,18 +95,22 @@ def make_scorer(method, bank):
         sc = (bq.round1_scorer(Z, REPO, {"R1S": "source_balanced", "R1C": "source_and_color_balanced"}[bank])
               if bank in ("R1S", "R1C") else bq.v2_global_scorer(Z, REPO))
         return lambda keys: sc.score(np.stack([lookup[k] for k in keys]))["Q_contrast"]
-    from evaluate_v2 import fb_scorer       # 与评测完全相同的表征、PCA 与参考库
-    ks = fb_scorer(extra=OUTD / "full_fb_raw.npz")
+    if method == "fb_final":                # 最终方案：四来源参考库（不含 AVA），PCA 也只用这四个来源拟合
+        from final_scheme import final_scorer
+        ks = final_scorer(extra=OUTD / "full_fb_raw.npz")
+    else:
+        from evaluate_v2 import fb_scorer       # retouch-v2 候选：五来源
+        ks = fb_scorer(extra=OUTD / "full_fb_raw.npz")
     return lambda keys: ks.score(list(keys))["contrast"]
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--method", choices=["clip", "fb"], required=True)
+    ap.add_argument("--method", choices=["clip", "fb", "fb_final"], required=True)
     ap.add_argument("--bank", default="R1S", choices=["R1S", "R1C", "V2G"])
     ap.add_argument("--workers", type=int, default=16)
     args = ap.parse_args()
-    tag = f"clip_{args.bank}" if args.method == "clip" else "fb_R1S"
+    tag = {"clip": f"clip_{args.bank}", "fb": "fb_R1S", "fb_final": "fb_final"}[args.method]
     m = pd.read_parquet(V1 / "full_manifest.parquet")
     m = m[m.exists]
     G["score"] = make_scorer(args.method, args.bank)

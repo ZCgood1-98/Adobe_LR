@@ -1,0 +1,26 @@
+{
+  "version": "retouch-final",
+  "date": "2026-11-21",
+  "decision": "用户 2026-11-21：『那就去掉 AVA 然后作为我们最终的评测方案』",
+  "status": "最终评测方案（由用户决定采纳）",
+  "lineage": "首轮 global-paired-calibration-v1 → content_v2 → retouch-v1（CLIP 6 候选全部未通过）→ retouch-v2（FB-R1S 通过 K1/K2，K3 差 0.014）→ 来源对齐诊断（去掉 AVA 结果不变，全量排名 Spearman 1.000）→ 本方案",
+  "configuration": {
+    "unit": "每批 64 张图；输出批与同一批原图配对比较",
+    "representation": "AesCLIP（OpenAI CLIP ViT-B/16 + AesCLIP 权重）投影前 768 维、L2 归一化 → 发布版 FB_l0.3 的 rep()（种子 0/1/2 各一个）→ L2 归一化 → 16 维 PCA",
+    "preprocessing": "PIL 读图 → exif 转正 → RGB → 长边缩到 512（bicubic）→ CLIP 预处理（短边 224 + 中心裁剪 224）",
+    "pca_fit": "首轮 R1S 参考库第 0 次抽样中 AADB / PARA / TAD / FLICKR_AES 的 H∪L（不含 AVA），每个种子各自拟合",
+    "bank": "首轮 R1S（source_balanced）参考库成员中的 AADB / PARA / TAD / FLICKR_AES：各来源按自身评分取上 / 下四分位尾部，每来源每侧 300 张，5 次抽样；AVA 全部移除（其 2,009 张参考图 100% 在 FB 训练拟合集内）",
+    "distance": "16 维高斯平方 Wasserstein-2",
+    "score": "每个（抽样, 来源）单元：Q = (D_L − D_H)/尺度，尺度 = 该单元 H∪L 在 (μ_H − μ_L) 方向投影的标准差；20 个单元等权平均，再对 3 个种子平均",
+    "comparison": "ΔQ = Q(输出批) − Q(同一批原图)；模型输出（q95 jpg）对原图 jpg95，专家终图（png）对原图 png",
+    "full_dataset_design": "score_full.py --method fb_final：各模型臂用所有模型都有输出的公共组；每批 64 组、5 种划分；类内满 64 组分批，不足 64 组整类一批并标注；按组重抽 200 次给 95% 区间"
+  },
+  "known_limitations": [
+    "MSC 退化的双向秩相关在来源对齐诊断中为 0.679，低于 retouch-v2 预注册的相对门槛 0.683；按用户决定接受（本方案的存档数值见 evaluate_final.py 的输出）",
+    "四个来源在 FB 空间里的高低分方向几乎重合，评审结论基本等于 FB 打分轴的判断，多来源不提供独立信息",
+    "整张转黑白会加分（AVA 偏好经 FB 表征带入），部分去饱和则正常扣分",
+    "极端风格验证与 FB 的训练数据同属 REPID，色温表现可能有主场优势，尚缺非 REPID 的人工确认",
+    "生图模型（B 类）输出可能改动内容，没有人工评审依据"
+  ],
+  "record_validation": "evaluate_final.py 用本配置重跑 V1（全部专家版本）、V3（极端风格）、V4（MSC）、V5（合成饱和度）作为存档；不用于选择方案"
+}

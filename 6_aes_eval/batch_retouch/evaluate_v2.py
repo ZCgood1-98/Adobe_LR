@@ -48,9 +48,12 @@ class KeyScorer:
         return {m: a[m] - b[m] for m in b}
 
 
-def fb_scorer(extra=None):
+def fb_scorer(extra=None, sources=None, pca_sources=None):
     """FB-R1S：每个种子 rep() → 归一化 → R1S 第 0 次抽样 H∪L 拟合 16 维 PCA → 抽样×来源单元。
-    extra：另一个原始特征文件（键 paths、特征 coords），只追加到查询表，不参与 PCA 与参考库。"""
+    extra：另一个原始特征文件（键 paths、特征 coords），只追加到查询表，不参与 PCA 与参考库。
+    sources / pca_sources：参考库单元与 PCA 拟合所用的来源（默认五个来源，即 retouch-v2 的定义）。"""
+    sources = list(sources or SOURCES)
+    pca_sources = list(pca_sources or SOURCES)
     import torch
     sys.path.insert(0, str(REPO / "6_aes_eval"))
     import train_unified as tu  # noqa: E402
@@ -76,7 +79,7 @@ def fb_scorer(extra=None):
         with torch.no_grad():
             R = torch.cat([sc.rep(X[i:i + 4096]) for i in range(0, len(X), 4096)])
             R = (R / R.norm(dim=-1, keepdim=True)).double().cpu().numpy()
-        fit = R[[pos[p] for p in bank[bank.draw.eq(0)].path]]
+        fit = R[[pos[p] for p in bank[bank.draw.eq(0) & bank.source.isin(pca_sources)].path]]
         center = fit.mean(0)
         _, _, vt = np.linalg.svd(fit - center, full_matrices=False)
         W = vt[:16].T
@@ -84,7 +87,7 @@ def fb_scorer(extra=None):
         lookup = dict(zip(keys, C))
         units = []
         for draw in sorted(bank.draw.unique()):
-            for src in SOURCES:
+            for src in sources:
                 cell = bank[bank.draw.eq(draw) & bank.source.eq(src)]
                 h = bq.stats(np.stack([lookup[p] for p in cell.loc[cell.side.eq("H"), "path"]]))
                 l = bq.stats(np.stack([lookup[p] for p in cell.loc[cell.side.eq("L"), "path"]]))
@@ -119,7 +122,7 @@ def pack(order, families):
     return [b for b in batches if len(b) == N]
 
 
-def eval_v1(scorers):
+def eval_v1(scorers, out=OUT):
     pairs = pd.read_parquet(OUT / "v1all_pairs.parquet")
     rows, boot = [], []
     for sub in ["vivid", "muted", "bw"]:
@@ -157,12 +160,12 @@ def eval_v1(scorers):
                 boot.append({"cand": name, "subgroup": sub, "rep": t, "rho": rho(dq, lb)})
             print(f"  V1 {sub} {name} 完成（每划分 {len(parts[0])} 批）", flush=True)
     df = pd.DataFrame(rows)
-    df.to_csv(OUT / "v1all_batches.csv", index=False)
+    df.to_csv(out / "v1all_batches.csv", index=False)
     return df, pd.DataFrame(boot)
 
 
 # ---------------------------------------------------------------- FB 的 V3 / V4 / V5
-def fb_v3(sc):
+def fb_v3(sc, out=OUT):
     lv = pd.read_parquet(V1 / "v3_levels.parquet")
     rows, summ = [], {}
     for axis, g in lv.groupby("axis"):
@@ -189,11 +192,11 @@ def fb_v3(sc):
                       "ci": [float(np.quantile(bs, .025)), float(np.quantile(bs, .975))],
                       "metric_best": max(levels, key=mc.get), "human_best": max(hc, key=hc.get)}
         print(f"  FB V3 {axis}: Spearman {summ[axis]['spearman']:+.2f}", flush=True)
-    pd.DataFrame(rows).to_csv(OUT / "fb_v3.csv", index=False)
+    pd.DataFrame(rows).to_csv(out / "fb_v3.csv", index=False)
     return summ
 
 
-def fb_v4(sc):
+def fb_v4(sc, out=OUT):
     pairs = pd.read_parquet(BG / "calibration_pairs.parquet")
     bi = pd.read_parquet(BG / "bidirectional_pairs.parquet")
     assert (bi.family_id.values == pairs.family_id.values).all()
@@ -210,12 +213,12 @@ def fb_v4(sc):
         rows.append({"seed": int(seed), "batch": int(b), "delta_mos": float(r.delta_mos.mean()),
                      "oriented_delta_mos": float(rb.oriented_delta_mos.mean()), "same": same, "mixed": mixd})
     df = pd.DataFrame(rows)
-    df.to_csv(OUT / "fb_v4.csv", index=False)
+    df.to_csv(out / "fb_v4.csv", index=False)
     return {"same_spearman_mean": float(np.nanmean([rho(d.same, d.delta_mos) for _, d in df.groupby("seed")])),
             "mixed_spearman_mean": float(np.nanmean([rho(d.mixed, d.oriented_delta_mos) for _, d in df.groupby("seed")]))}
 
 
-def fb_v5(sc):
+def fb_v5(sc, out=OUT):
     so = pd.read_parquet(BG / "synthetic_originals.parquet")
     fam = so.family_id.astype(str).to_numpy()
     perm = np.random.default_rng(SEED).permutation(len(fam))
@@ -226,7 +229,7 @@ def fb_v5(sc):
         for fac in FACTORS:
             rows.append({"batch": b, "factor": fac, "dQ": sc.score([f"SYN:{f}|{fac}" for f in fam[ix]])["contrast"] - base})
     df = pd.DataFrame(rows)
-    df.to_csv(OUT / "fb_v5.csv", index=False)
+    df.to_csv(out / "fb_v5.csv", index=False)
     m = df.groupby("factor").dQ.mean()
     return {"mean_dQ": {str(k): float(v) for k, v in m.items()}, "peak_factor": float(m.idxmax()),
             "dQ_8x_below_original": bool(m[8] < 0), "dQ_16x_below_original": bool(m[16] < 0)}
