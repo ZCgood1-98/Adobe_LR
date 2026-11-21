@@ -8,6 +8,8 @@
    ΔQ 差值的批均值与按照片重抽 2,000 次的 95% 区间；另报「6 个风格都拿去比」时的 Bonferroni 校正区间（99.17%）。
 ③ 内容保持：测试照片上每个方法的输出与其输入图的结构相似度（长边 512 灰度；Sobel 梯度幅值的相关系数、SSIM），
    用来判断哪些方法改动了画面内容（专家终图存在构图裁剪差异，不参与）。
+   ⚠ 这里没有做几何对齐：qwen-image / muse-image 的输出有不到 1% 长边的整体平移与缩放，未对齐的相关（0.58 / 0.80）
+   会把它误当成内容改动。生图模型请以 align_b_outputs.py 的对齐后结果为准（qwen 0.967、muse 0.966、gpt-5-image-mini 0.309）。
 
 产物：<bg>/retouch_final/final_model_test/{dev_style_selection.json, paired_tests.json, content_preservation.csv}
 用法（aes 环境）：python 6_aes_eval/batch_retouch/style_select_and_content.py
