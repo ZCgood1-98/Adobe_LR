@@ -50,7 +50,7 @@ class KeyScorer:
 
 def fb_scorer(extra=None, sources=None, pca_sources=None):
     """FB-R1S：每个种子 rep() → 归一化 → R1S 第 0 次抽样 H∪L 拟合 16 维 PCA → 抽样×来源单元。
-    extra：另一个原始特征文件（键 paths、特征 coords），只追加到查询表，不参与 PCA 与参考库。
+    extra：一个或多个原始特征文件（键 paths、特征 coords），只追加到查询表，不参与 PCA 与参考库。
     sources / pca_sources：参考库单元与 PCA 拟合所用的来源（默认五个来源，即 retouch-v2 的定义）。"""
     sources = list(sources or SOURCES)
     pca_sources = list(pca_sources or SOURCES)
@@ -61,8 +61,8 @@ def fb_scorer(extra=None, sources=None, pca_sources=None):
     z = np.load(OUT / "fb_raw.npz")
     keys = z["keys"].astype(str)
     raw = z["fb"].astype(np.float32)
-    if extra is not None:
-        e = np.load(extra)
+    for ex in ([] if extra is None else (extra if isinstance(extra, (list, tuple)) else [extra])):
+        e = np.load(ex)
         ek = e["paths"].astype(str)
         new = ~np.isin(ek, keys)
         keys = np.concatenate([keys, ek[new]])
